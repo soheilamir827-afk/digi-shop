@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e6123d">
+<title>دیجی شاپ | خرید آنلاین</title>
+<style>
+:root{--red:#e6123d;--red2:#c90d32;--ink:#232933;--muted:#777f8c;--line:#e9ebef;--bg:#f5f6f8;--green:#16a34a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}a{color:inherit;text-decoration:none}
+.top{background:#20242c;color:#fff;text-align:center;font-size:12px;padding:8px}.header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.headin{max-width:1200px;margin:auto;padding:14px 16px;display:flex;gap:14px;align-items:center}.logo{font-size:23px;font-weight:900;color:var(--red);white-space:nowrap}.logo span{color:#242a34}.search{flex:1;display:flex;background:#f1f2f5;border-radius:10px;overflow:hidden}.search input{border:0;background:transparent;padding:12px;width:100%;outline:none}.search button{background:var(--red);color:white;padding:0 18px}.headbtn{background:#fff;border:1px solid #dfe2e8;border-radius:9px;padding:10px 12px;white-space:nowrap}.headbtn strong{color:var(--red)}.nav{max-width:1200px;margin:auto;padding:0 16px 12px;display:flex;gap:20px;overflow:auto;font-size:13px;color:#555}.nav a{white-space:nowrap}.wrap{max-width:1200px;margin:18px auto;padding:0 16px}.hero{background:linear-gradient(110deg,#b90b31,#f0445e);border-radius:16px;padding:25px;color:white;display:flex;justify-content:space-between;align-items:center;min-height:170px;overflow:hidden}.hero h1{font-size:26px;margin:0 0 10px}.hero p{margin:0;line-height:1.9;font-size:14px}.hero .bubble{font-size:65px;filter:drop-shadow(0 8px 10px #6f001f55)}.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}.quick button{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 8px;color:#444}.quick .emoji{display:block;font-size:26px;margin-bottom:8px}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:22px 0 13px}.sectionhead h2{font-size:19px;margin:0}.sectionhead small{color:var(--muted)}.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.card{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:.15s;display:flex;flex-direction:column}.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px #17203310}.pic{height:155px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-size:65px;position:relative}.badge{position:absolute;top:10px;right:10px;background:var(--red);color:#fff;font-size:11px;padding:5px 7px;border-radius:5px}.info{padding:12px;display:flex;flex-direction:column;flex:1}.name{font-size:13px;line-height:1.9;min-height:48px}.desc{font-size:11px;color:var(--muted);margin:5px 0 10px}.price{font-weight:bold;font-size:15px;margin-top:auto}.price small{font-size:11px;font-weight:normal;color:#555}.old{font-size:11px;color:#9ba1aa;text-decoration:line-through;margin:7px 0}.add{background:var(--red);color:#fff;border-radius:8px;padding:10px;margin-top:10px}.add:hover,.primary:hover{background:var(--red2)}.empty{background:#fff;padding:28px;border:1px solid var(--line);border-radius:12px;text-align:center;color:var(--muted);grid-column:1/-1}.footer{margin-top:35px;background:#fff;border-top:1px solid var(--line);padding:25px 16px;text-align:center;color:#777;font-size:12px;line-height:2}
+.overlay{position:fixed;inset:0;background:#10152288;z-index:10;display:none;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}.modal{background:#fff;border-radius:15px;width:min(600px,100%);max-height:90vh;overflow:auto;padding:20px}.modalhead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:15px}.modalhead h2{font-size:19px;margin:0}.x{background:#f1f2f5;border-radius:8px;padding:7px 11px}.cartrow{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.cartemoji{font-size:32px}.carttext{flex:1;font-size:13px;line-height:1.8}.qty{display:flex;gap:9px;align-items:center}.qty button{background:#f2f3f5;border-radius:6px;padding:5px 9px}.total{display:flex;justify-content:space-between;font-weight:bold;padding:17px 0}.primary{background:var(--red);color:#fff;padding:12px 16px;border-radius:9px;width:100%}.secondary{background:#f0f1f4;padding:11px 14px;border-radius:8px}.field{display:flex;flex-direction:column;gap:7px;margin:12px 0}.field label{font-size:13px;color:#555}.field input,.field select,.field textarea{border:1px solid #dfe2e8;border-radius:8px;padding:11px;outline-color:var(--red);width:100%;background:white}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{font-size:12px;line-height:1.9;color:#666;background:#fff8e8;padding:12px;border-radius:8px;margin:10px 0}.success{background:#effaf2;color:#166534;padding:13px;border-radius:8px;line-height:1.9;font-size:13px}.adminlist{font-size:12px;line-height:1.9}.adminitem{border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0}.adminitem button{background:#fee2e2;color:#991b1b;border-radius:6px;padding:6px 9px;margin-top:6px}.smallbtn{border:1px solid var(--line);background:white;border-radius:8px;padding:8px 10px}
+@media(max-width:750px){.headin{flex-wrap:wrap;gap:9px}.logo{font-size:21px}.search{order:3;flex-basis:100%}.headbtn{margin-right:auto}.nav{gap:16px}.hero{min-height:145px;padding:20px}.hero h1{font-size:21px}.hero .bubble{font-size:48px}.quick{grid-template-columns:repeat(5,minmax(66px,1fr));overflow:auto}.quick button{font-size:11px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.pic{height:125px;font-size:52px}.info{padding:10px}.name{font-size:12px}.sectionhead h2{font-size:16px}}
+@media(min-width:751px) and (max-width:1000px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="top">ارسال سفارش‌ها پس از هماهنگی با فروشگاه | فروشگاه اینترنتی دیجی شاپ</div>
+<header class="header">
+ <div class="headin">
+  <a class="logo" href="#" onclick="return false">دیجی <span>شاپ</span></a>
+  <div class="search"><input id="search" placeholder="جست‌وجو در محصولات دیجی شاپ..." oninput="renderProducts()"><button onclick="renderProducts()">جست‌وجو</button></div>
+  <button class="headbtn" onclick="openCart()">🛒 سبد خرید <strong id="cartcount">۰</strong></button>
+ </div>
+ <nav class="nav">
+  <a href="#" onclick="filterCat('همه');return false">همه محصولات</a><a href="#" onclick="filterCat('دیجیتال');return false">موبایل و دیجیتال</a><a href="#" onclick="filterCat('خانه');return false">خانه و آشپزخانه</a><a href="#" onclick="filterCat('پوشاک');return false">پوشاک و کفش</a><a href="#" onclick="filterCat('زیبایی');return false">زیبایی و سلامت</a><a href="#" onclick="filterCat('ورزش');return false">ورزش و سفر</a><a href="#" onclick="filterCat('سایر');return false">سایر کالاها</a>
+ </nav>
+</header>
+<main class="wrap">
+ <section class="hero"><div><h1>به دیجی شاپ خوش آمدید!</h1><p>خرید آسان، انتخاب متنوع<br>محصول موردنظرت رو پیدا کن و سفارش بده.</p></div><div class="bubble">🛍️</div></section>
+ <div class="quick">
+  <button onclick="filterCat('دیجیتال')"><span class="emoji">📱</span>دیجیتال</button>
+  <button onclick="filterCat('خانه')"><span class="emoji">🏠</span>خانه</button>
+  <button onclick="filterCat('پوشاک')"><span class="emoji">👟</span>پوشاک</button>
+  <button onclick="filterCat('زیبایی')"><span class="emoji">🧴</span>زیبایی</button>
+  <button onclick="filterCat('ورزش')"><span class="emoji">⚽</span>ورزش</button>
+ </div>
+ <div class="sectionhead"><h2 id="productTitle">محصولات پیشنهادی</h2><small id="resultCount"></small></div>
+ <section class="products" id="products"></section>
+</main>
+<footer class="footer">
+ <b style="color:#e6123d;font-size:18px">دیجی شاپ</b><br>
+ فروشگاه اینترنتی کالاهای متنوع<br>
+ برای ثبت سفارش، محصول را به سبد خرید اضافه کنید و فرم سفارش را تکمیل کنید.<br>
+ <button class="smallbtn" onclick="openAdmin()">ورود مدیریت فروشگاه</button>
+</footer>
+
+<div class="overlay" id="cartOverlay" onclick="overlayClose(event,'cartOverlay')"><div class="modal">
+ <div class="modalhead"><h2>سبد خرید شما</h2><button class="x" onclick="closeModal('cartOverlay')">✕</button></div>
+ <div id="cartItems"></div><div class="total"><span>مبلغ کل</span><span id="cartTotal">۰ تومان</span></div>
+ <button class="primary" onclick="checkout()">ثبت سفارش</button>
+</div></div>
+<div class="overlay" id="checkoutOverlay" onclick="overlayClose(event,'checkoutOverlay')"><div class="modal">
+ <div class="modalhead"><h2>ثبت سفارش و پرداخت کارت‌به‌کارت</h2><button class="x" onclick="closeModal('checkoutOverlay')">✕</button></div>
+ <div id="checkoutBody"></div>
+</div></div>
+<div class="overlay" id="adminOverlay" onclick="overlayClose(event,'adminOverlay')"><div class="modal">
+ <div class="modalhead"><h2>پنل مدیریت دیجی شاپ</h2><button class="x" onclick="closeModal('adminOverlay')">✕</button></div>
+ <div id="adminBody"></div>
+</div></div>
+
+<script>
+const defaultProducts=[
+{id:1,name:'هدفون بی‌سیم',cat:'دیجیتال',emoji:'🎧',price:890000,old:1090000,desc:'مناسب موسیقی و مکالمه'},
+{id:2,name:'ساعت هوشمند',cat:'دیجیتال',emoji:'⌚',price:1250000,old:1490000,desc:'طراحی زیبا و کاربردی'},
+{id:3,name:'گوشی موبایل',cat:'دیجیتال',emoji:'📱',price:8900000,old:9500000,desc:'نمونه نمایشی محصول'},
+{id:4,name:'اسپیکر بلوتوثی',cat:'دیجیتال',emoji:'🔊',price:760000,old:890000,desc:'صدای قابل حمل'},
+{id:5,name:'چراغ مطالعه',cat:'خانه',emoji:'💡',price:420000,old:0,desc:'مناسب میز کار و مطالعه'},
+{id:6,name:'ماگ سرامیکی',cat:'خانه',emoji:'☕',price:185000,old:220000,desc:'مناسب خانه و محل کار'},
+{id:7,name:'مخلوط‌کن',cat:'خانه',emoji:'🥤',price:1450000,old:0,desc:'برای نوشیدنی‌های خانگی'},
+{id:8,name:'بالش طبی',cat:'خانه',emoji:'🛏️',price:590000,old:650000,desc:'راحتی برای استراحت'},
+{id:9,name:'کفش روزمره',cat:'پوشاک',emoji:'👟',price:1150000,old:1390000,desc:'مناسب استفاده روزانه'},
+{id:10,name:'هودی اسپرت',cat:'پوشاک',emoji:'🧥',price:980000,old:0,desc:'استایل راحت و روزمره'},
+{id:11,name:'کوله‌پشتی',cat:'پوشاک',emoji:'🎒',price:670000,old:790000,desc:'مناسب مدرسه و سفر'},
+{id:12,name:'عینک آفتابی',cat:'پوشاک',emoji:'🕶️',price:390000,old:0,desc:'اکسسوری روزمره'},
+{id:13,name:'کرم مرطوب‌کننده',cat:'زیبایی',emoji:'🧴',price:245000,old:290000,desc:'مناسب مراقبت روزانه'},
+{id:14,name:'عطر جیبی',cat:'زیبایی',emoji:'🧴',price:175000,old:0,desc:'رایحه دلپذیر و جمع‌وجور'},
+{id:15,name:'توپ فوتبال',cat:'ورزش',emoji:'⚽',price:530000,old:610000,desc:'برای تمرین و بازی'},
+{id:16,name:'قمقمه ورزشی',cat:'ورزش',emoji:'🚰',price:160000,old:0,desc:'مناسب باشگاه و سفر'},
+{id:17,name:'کتاب داستان',cat:'سایر',emoji:'📚',price:220000,old:0,desc:'برای اوقات فراغت'},
+{id:18,name:'جعبه ابزار کوچک',cat:'سایر',emoji:'🧰',price:480000,old:0,desc:'ابزارهای کاربردی'}
+];
+let products=JSON.parse(localStorage.getItem('digishop_products')||'null')||defaultProducts;
+let cart=JSON.parse(localStorage.getItem('digishop_cart')||'{}');
+let currentCat='همه';
+const fmt=n=>Number(n||0).toLocaleString('fa-IR');
+function save(){localStorage.setItem('digishop_products',JSON.stringify(products));localStorage.setItem('digishop_cart',JSON.stringify(cart))}
+function renderProducts(){
+ const q=(document.getElementById('search').value||'').trim().toLowerCase();
+ const shown=products.filter(p=>(currentCat==='همه'||p.cat===currentCat)&&(`${p.name} ${p.cat} ${p.desc}`.toLowerCase().includes(q)));
+ document.getElementById('productTitle').textContent=currentCat==='همه'?'محصولات پیشنهادی':'دسته‌بندی '+currentCat;
+ document.getElementById('resultCount').textContent=fmt(shown.length)+' کالا';
+ document.getElementById('products').innerHTML=shown.length?shown.map(p=>`<article class="card"><div class="pic">${p.emoji||'📦'}${p.old>p.price?'<span class="badge">پیشنهاد ویژه</span>':''}</div><div class="info"><div class="name">${esc(p.name)}</div><div class="desc">${esc(p.desc||'')}</div>${p.old>p.price?`<div class="old">${fmt(p.old)} تومان</div>`:''}<div class="price">${fmt(p.price)} <small>تومان</small></div><button class="add" onclick="addCart(${p.id})">افزودن به سبد خرید</button></div></article>`).join(''):'<div class="empty">محصولی پیدا نشد. عبارت جست‌وجو یا دسته‌بندی را تغییر بده.</div>';
+ updateCount();
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function filterCat(c){currentCat=c;renderProducts();window.scrollTo({top:0,behavior:'smooth'})}
+function addCart(id){cart[id]=(cart[id]||0)+1;save();updateCount();toast('به سبد خرید اضافه شد')}
+function updateCount(){document.getElementById('cartcount').textContent=fmt(Object.values(cart).reduce((a,b)=>a+b,0))}
+function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('show')}
+function renderCart(){
+ const items=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id==id));
+ document.getElementById('cartItems').innerHTML=items.length?items.map(([id,q])=>{let p=products.find(x=>x.id==id);return `<div class="cartrow"><div class="cartemoji">${p.emoji||'📦'}</div><div class="carttext"><b>${esc(p.name)}</b><br>${fmt(p.price)} تومان</div><div class="qty"><button onclick="changeQty(${id},-1)">−</button>${fmt(q)}<button onclick="changeQty(${id},1)">+</button></div></div>`}).join(''):'<div class="empty">سبد خرید خالی است.</div>';
+ document.getElementById('cartTotal').textContent=fmt(cartSum())+' تومان';
+}
+function cartSum(){return Object.entries(cart).reduce((sum,[id,q])=>{let p=products.find(x=>x.id==id);return sum+(p?p.price*q:0)},0)}
+function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];save();renderCart()}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function overlayClose(e,id){if(e.target.id===id)closeModal(id)}
+function checkout(){
+ if(!Object.keys(cart).length){toast('سبد خرید خالی است');return}
+ closeModal('cartOverlay');document.getElementById('checkoutBody').innerHTML=`
+ <div class="hint">این نسخه برای شروع و آزمایش ساخته شده است. قبل از انتقال پول، شماره کارت و هویت فروشنده را خودت بررسی کن. هیچ پرداختی به‌صورت خودکار انجام نمی‌شود.</div>
+ <div class="field"><label>نام و نام خانوادگی</label><input id="buyerName" placeholder="نام کامل"></div>
+ <div class="row2"><div class="field"><label>شماره تماس</label><input id="buyerPhone" inputmode="tel" placeholder="شماره تماس"></div><div class="field"><label>شهر</label><input id="buyerCity" placeholder="شهر محل تحویل"></div></div>
+ <div class="field"><label>نشانی کامل تحویل</label><textarea id="buyerAddress" rows="2" placeholder="نشانی و کد پستی (در صورت نیاز)"></textarea></div>
+ <div class="field"><label>توضیحات سفارش (اختیاری)</label><textarea id="buyerNote" rows="2" placeholder="رنگ، مدل یا توضیحات دیگر"></textarea></div>
+ <div class="total"><span>مبلغ سفارش</span><span>${fmt(cartSum())} تومان</span></div>
+ <button class="primary" onclick="submitOrder()">ثبت سفارش و دریافت راهنمای پرداخت</button>`;
+ document.getElementById('checkoutOverlay').classList.add('show');
+}
+function submitOrder(){
+ const name=document.getElementById('buyerName').value.trim(),phone=document.getElementById('buyerPhone').value.trim(),city=document.getElementById('buyerCity').value.trim(),address=document.getElementById('buyerAddress').value.trim();
+ if(!name||!phone||!city||!address){toast('لطفاً اطلاعات ضروری را کامل کن');return}
+ const order={id:Date.now(),name,phone,city,address,note:document.getElementById('buyerNote').value,items:Object.entries(cart).map(([id,q])=>{let p=products.find(x=>x.id==id);return {name:p?.name||'کالا',price:p?.price||0,qty:q}}),total:cartSum(),date:new Date().toLocaleString('fa-IR'),status:'در انتظار هماهنگی'};
+ let orders=JSON.parse(localStorage.getItem('digishop_orders')||'[]');orders.unshift(order);localStorage.setItem('digishop_orders',JSON.stringify(orders));cart={};save();updateCount();
+ document.getElementById('checkoutBody').innerHTML=`<div class="success"><b>سفارش در همین مرورگر ثبت شد.</b><br>شماره سفارش: ${fmt(order.id)}<br>مبلغ: ${fmt(order.total)} تومان<br><br>برای پرداخت کارت‌به‌کارت، ابتدا با فروشگاه هماهنگ کن. اطلاعات کارت فروشنده هنوز در تنظیمات سایت وارد نشده است؛ بنابراین هیچ شماره کارتی نمایش داده نمی‌شود و پولی منتقل نشده است.<br><br><b>توجه:</b> این نسخه آزمایشی است؛ سفارش‌ها فقط روی همین دستگاه و مرورگر ذخیره می‌شوند.</div><button class="primary" style="margin-top:12px" onclick="closeModal('checkoutOverlay');renderProducts()">بازگشت به فروشگاه</button>`;
+}
+function openAdmin(){
+ document.getElementById('adminBody').innerHTML=`<div class="hint">پنل آزمایشی است و رمز ورود واقعی/سرور ندارد. برای نسخه عمومی، پنل مدیریت باید با ورود امن و پایگاه داده محافظت شود.</div>
+ <div class="field"><label>رمز نمایشی پنل</label><input id="adminPass" type="password" placeholder="رمز دلخواه: 1234"></div><button class="primary" onclick="adminLogin()">ورود به پنل</button>`;
+ document.getElementById('adminOverlay').classList.add('show');
+}
+function adminLogin(){
+ if(document.getElementById('adminPass').value!=='1234'){toast('رمز نمایشی این نسخه 1234 است');return}
+ renderAdmin();
+}
+function renderAdmin(){
+ let orders=JSON.parse(localStorage.getItem('digishop_orders')||'[]');
+ document.getElementById('adminBody').innerHTML=`<h3>افزودن محصول جدید</h3>
+ <div class="field"><label>نام محصول</label><input id="newName" placeholder="مثلاً کیف دستی"></div>
+ <div class="row2"><div class="field"><label>قیمت (تومان)</label><input id="newPrice" type="number" min="0" placeholder="500000"></div><div class="field"><label>ایموجی محصول</label><input id="newEmoji" placeholder="👜"></div></div>
+ <div class="row2"><div class="field"><label>دسته‌بندی</label><select id="newCat"><option>دیجیتال</option><option>خانه</option><option>پوشاک</option><option>زیبایی</option><option>ورزش</option><option>سایر</option></select></div><div class="field"><label>قیمت قبلی (اختیاری)</label><input id="newOld" type="number" min="0" placeholder="0"></div></div>
+ <div class="field"><label>توضیح کوتاه</label><input id="newDesc" placeholder="توضیح محصول"></div><button class="primary" onclick="addProduct()">افزودن محصول</button>
+ <h3 style="margin-top:25px">مدیریت محصولات (${fmt(products.length)})</h3><div class="adminlist">${products.map(p=>`<div class="adminitem"><b>${esc(p.emoji)} ${esc(p.name)}</b> — ${fmt(p.price)} تومان<br><button onclick="deleteProduct(${p.id})">حذف محصول</button></div>`).join('')}</div>
+ <h3 style="margin-top:25px">سفارش‌ها (${fmt(orders.length)})</h3><div class="adminlist">${orders.length?orders.map(o=>`<div class="adminitem"><b>سفارش ${fmt(o.id)}</b> — ${esc(o.name)}<br>تماس: ${esc(o.phone)} | شهر: ${esc(o.city)}<br>مبلغ: ${fmt(o.total)} تومان — ${esc(o.status)}<br>نشانی: ${esc(o.address)}<br>اقلام: ${o.items.map(i=>esc(i.name)+' × '+fmt(i.qty)).join('، ')}<br><button onclick="deleteOrder(${o.id})">حذف سفارش از این مرورگر</button></div>`).join(''):'هنوز سفارشی ثبت نشده است.'}</div>
+ <button class="secondary" style="margin-top:12px" onclick="openAdmin()">قفل پنل</button>`;
+}
+function addProduct(){
+ const name=document.getElementById('newName').value.trim(),price=Number(document.getElementById('newPrice').value);
+ if(!name||!price||price<0){toast('نام و قیمت معتبر وارد کن');return}
+ products.unshift({id:Date.now(),name,price,old:Number(document.getElementById('newOld').value)||0,emoji:document.getElementById('newEmoji').value.trim()||'📦',cat:document.getElementById('newCat').value,desc:document.getElementById('newDesc').value.trim()||'محصول جدید'});
+ save();renderProducts();renderAdmin();toast('محصول اضافه شد');
+}
+function deleteProduct(id){if(!confirm('این محصول حذف شود؟'))return;products=products.filter(p=>p.id!==id);delete cart[id];save();renderProducts();renderAdmin()}
+function deleteOrder(id){if(!confirm('این سفارش از همین مرورگر حذف شود؟'))return;let o=JSON.parse(localStorage.getItem('digishop_orders')||'[]').filter(x=>x.id!==id);localStorage.setItem('digishop_orders',JSON.stringify(o));renderAdmin()}
+function toast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#20242c;color:white;padding:12px 18px;border-radius:10px;z-index:30;font-size:13px;box-shadow:0 5px 20px #0002';document.body.appendChild(t)}t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2200)}
+renderProducts();
+</script>
+</body>
+</html>
