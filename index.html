@@ -153,26 +153,62 @@ async function submitOrder(){
    if(button){button.disabled=false;button.textContent='تلاش دوباره برای ثبت سفارش'}
  }
 }
+let adminAccessToken = null;
+let adminUserId = null;
+let onlineOrders = [];
 function openAdmin(){
- document.getElementById('adminBody').innerHTML=`<div class="hint">پنل آزمایشی است و رمز ورود واقعی/سرور ندارد. برای نسخه عمومی، پنل مدیریت باید با ورود امن و پایگاه داده محافظت شود.</div>
- <div class="field"><label>رمز نمایشی پنل</label><input id="adminPass" type="password" placeholder="رمز دلخواه: 1234"></div><button class="primary" onclick="adminLogin()">ورود به پنل</button>`;
+ document.getElementById('adminBody').innerHTML=`<div class="hint">ورود امن مدیر با حساب Supabase. ایمیل و رمز حساب مدیر را وارد کن؛ رمز در این صفحه ذخیره نمی‌شود.</div>
+ <div class="field"><label>ایمیل مدیر</label><input id="adminEmail" type="email" autocomplete="username" value="soheilamir827@gmail.com" placeholder="ایمیل مدیر"></div>
+ <div class="field"><label>رمز عبور</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="رمز حساب Supabase"></div>
+ <button class="primary" onclick="adminLogin()">ورود امن</button>`;
  document.getElementById('adminOverlay').classList.add('show');
 }
-function adminLogin(){
- if(document.getElementById('adminPass').value!=='1234'){toast('رمز نمایشی این نسخه 1234 است');return}
- renderAdmin();
+async function adminLogin(){
+ const email=document.getElementById('adminEmail').value.trim();
+ const password=document.getElementById('adminPassword').value;
+ if(!email||!password){toast('ایمیل و رمز عبور را وارد کن');return}
+ const btn=document.querySelector('#adminBody .primary'); if(btn){btn.disabled=true;btn.textContent='در حال بررسی...'}
+ try{
+  const r=await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({email,password})});
+  const auth=await r.json();
+  if(!r.ok||!auth.access_token||!auth.user){throw new Error(auth.msg||auth.message||auth.error_description||'ایمیل یا رمز عبور درست نیست')}
+  adminAccessToken=auth.access_token; adminUserId=auth.user.id;
+  const check=await fetch(`${SUPABASE_URL}/rest/v1/shop_admins?select=user_id&user_id=eq.${encodeURIComponent(adminUserId)}`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}});
+  const admins=await check.json();
+  if(!check.ok||!Array.isArray(admins)||!admins.some(x=>x.user_id===adminUserId)){adminAccessToken=null;adminUserId=null;throw new Error('این حساب در فهرست مدیران فروشگاه ثبت نشده است')}
+  await renderAdmin();
+ }catch(err){toast(String(err.message||'ورود ناموفق بود').slice(0,150));if(btn){btn.disabled=false;btn.textContent='ورود امن'}}
 }
-function renderAdmin(){
- let orders=JSON.parse(localStorage.getItem('digishop_orders')||'[]');
- document.getElementById('adminBody').innerHTML=`<h3>افزودن محصول جدید</h3>
- <div class="field"><label>نام محصول</label><input id="newName" placeholder="مثلاً کیف دستی"></div>
- <div class="row2"><div class="field"><label>قیمت (تومان)</label><input id="newPrice" type="number" min="0" placeholder="500000"></div><div class="field"><label>ایموجی محصول</label><input id="newEmoji" placeholder="👜"></div></div>
- <div class="row2"><div class="field"><label>دسته‌بندی</label><select id="newCat"><option>دیجیتال</option><option>خانه</option><option>پوشاک</option><option>زیبایی</option><option>ورزش</option><option>سایر</option></select></div><div class="field"><label>قیمت قبلی (اختیاری)</label><input id="newOld" type="number" min="0" placeholder="0"></div></div>
- <div class="field"><label>توضیح کوتاه</label><input id="newDesc" placeholder="توضیح محصول"></div><button class="primary" onclick="addProduct()">افزودن محصول</button>
- <h3 style="margin-top:25px">مدیریت محصولات (${fmt(products.length)})</h3><div class="adminlist">${products.map(p=>`<div class="adminitem"><b>${esc(p.emoji)} ${esc(p.name)}</b> — ${fmt(p.price)} تومان<br><button onclick="deleteProduct(${p.id})">حذف محصول</button></div>`).join('')}</div>
- <h3 style="margin-top:25px">سفارش‌ها (${fmt(orders.length)})</h3><div class="adminlist">${orders.length?orders.map(o=>`<div class="adminitem"><b>سفارش ${fmt(o.id)}</b> — ${esc(o.name)}<br>تماس: ${esc(o.phone)} | شهر: ${esc(o.city)}<br>مبلغ: ${fmt(o.total)} تومان — ${esc(o.status)}<br>نشانی: ${esc(o.address)}<br>اقلام: ${o.items.map(i=>esc(i.name)+' × '+fmt(i.qty)).join('، ')}<br><button onclick="deleteOrder(${o.id})">حذف سفارش از این مرورگر</button></div>`).join(''):'هنوز سفارشی ثبت نشده است.'}</div>
- <button class="secondary" style="margin-top:12px" onclick="openAdmin()">قفل پنل</button>`;
+async function renderAdmin(){
+ if(!adminAccessToken){openAdmin();return}
+ document.getElementById('adminBody').innerHTML='<div class="hint">در حال دریافت سفارش‌های آنلاین...</div>';
+ try{
+  const r=await fetch(`${SUPABASE_URL}/rest/v1/orders?select=*&order=created_at.desc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}});
+  const data=await r.json();
+  if(!r.ok)throw new Error(data.message||data.details||'دریافت سفارش‌ها ناموفق بود');
+  onlineOrders=Array.isArray(data)?data:[];
+  document.getElementById('adminBody').innerHTML=`<div class="success">ورود مدیر تأیید شد. سفارش‌های نمایش‌داده‌شده از پایگاه داده آنلاین هستند.</div>
+  <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap"><button class="secondary" onclick="renderAdmin()">تازه‌سازی سفارش‌ها</button><button class="secondary" onclick="adminLogout()">خروج از حساب مدیر</button></div>
+  <h3>سفارش‌های آنلاین (${fmt(onlineOrders.length)})</h3><div class="adminlist">${onlineOrders.length?onlineOrders.map(o=>{const items=Array.isArray(o.items)?o.items.map(i=>`${esc(i.name||'کالا')} × ${fmt(i.qty||1)} (${fmt(i.price||0)} تومان)`).join('، '):esc(JSON.stringify(o.items||[]));return `<div class="adminitem"><b>سفارش #${esc(o.id)}</b><br>تاریخ: ${esc(o.created_at?new Date(o.created_at).toLocaleString('fa-IR'):'—')}<br>نام مشتری: ${esc(o.customer_name)}<br>تلفن: ${esc(o.customer_phone)}<br>نشانی: ${esc(o.customer_address)}<br>مبلغ: ${fmt(o.total_amount)} تومان<br>روش پرداخت: کارت‌به‌کارت | وضعیت پرداخت: ${esc(o.payment_status)}<br>اقلام: ${items}<div class="field"><label>وضعیت سفارش</label><select id="orderStatus_${esc(o.id)}"><option value="new" ${o.order_status==='new'?'selected':''}>جدید</option><option value="processing" ${o.order_status==='processing'?'selected':''}>در حال آماده‌سازی</option><option value="shipped" ${o.order_status==='shipped'?'selected':''}>ارسال شده</option><option value="completed" ${o.order_status==='completed'?'selected':''}>تکمیل شده</option><option value="cancelled" ${o.order_status==='cancelled'?'selected':''}>لغو شده</option></select></div><button class="primary" onclick="updateOrderStatus('${esc(o.id)}')">ذخیره وضعیت سفارش</button></div>`}).join(''):'هنوز سفارشی در پایگاه داده آنلاین وجود ندارد.'}</div>
+  <hr style="margin:20px 0;border:0;border-top:1px solid #ddd"><h3>محصولات این مرورگر</h3><div class="hint">مدیریت محصولات در نسخه فعلی فقط روی همین مرورگر ذخیره می‌شود؛ تغییرات محصول هنوز بین همه کاربران همگام نیست.</div>
+  <h3>افزودن محصول جدید</h3><div class="field"><label>نام محصول</label><input id="newName" placeholder="مثلاً کیف دستی"></div>
+  <div class="row2"><div class="field"><label>قیمت (تومان)</label><input id="newPrice" type="number" min="0" placeholder="500000"></div><div class="field"><label>ایموجی محصول</label><input id="newEmoji" placeholder="👜"></div></div>
+  <div class="row2"><div class="field"><label>دسته‌بندی</label><select id="newCat"><option>دیجیتال</option><option>خانه</option><option>پوشاک</option><option>زیبایی</option><option>ورزش</option><option>سایر</option></select></div><div class="field"><label>قیمت قبلی (اختیاری)</label><input id="newOld" type="number" min="0" placeholder="0"></div></div>
+  <div class="field"><label>توضیح کوتاه</label><input id="newDesc" placeholder="توضیح محصول"></div><button class="primary" onclick="addProduct()">افزودن محصول</button>
+  <h3 style="margin-top:20px">فهرست محصولات (${fmt(products.length)})</h3><div class="adminlist">${products.map(p=>`<div class="adminitem"><b>${esc(p.emoji)} ${esc(p.name)}</b> — ${fmt(p.price)} تومان<br><button onclick="deleteProduct(${p.id})">حذف محصول از همین مرورگر</button></div>`).join('')}</div>`;
+ }catch(err){document.getElementById('adminBody').innerHTML=`<div class="hint">خطا در دریافت سفارش‌های آنلاین: ${esc(err.message||'خطای نامشخص')}<br>لطفاً تنظیمات RLS و سیاست‌های جدول orders را بررسی کن.</div><button class="secondary" onclick="renderAdmin()">تلاش دوباره</button><button class="secondary" onclick="adminLogout()">خروج</button>`}
 }
+async function updateOrderStatus(id){
+ if(!adminAccessToken){toast('ابتدا وارد حساب مدیر شو');return}
+ const select=document.getElementById('orderStatus_'+id); if(!select)return;
+ const status=select.value;
+ try{
+  const r=await fetch(`${SUPABASE_URL}/rest/v1/orders?id=eq.${encodeURIComponent(id)}`,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=minimal'},body:JSON.stringify({order_status:status})});
+  if(!r.ok){let msg='';try{msg=await r.text()}catch(e){}throw new Error(msg||'ذخیره وضعیت ناموفق بود')}
+  toast('وضعیت سفارش ذخیره شد');
+ }catch(err){toast('خطا در ذخیره وضعیت سفارش');console.error(err)}
+}
+function adminLogout(){adminAccessToken=null;adminUserId=null;onlineOrders=[];openAdmin();toast('از حساب مدیر خارج شدی')}
 function addProduct(){
  const name=document.getElementById('newName').value.trim(),price=Number(document.getElementById('newPrice').value);
  if(!name||!price||price<0){toast('نام و قیمت معتبر وارد کن');return}
@@ -185,4 +221,4 @@ function toast(msg){let t=document.getElementById('toast');if(!t){t=document.cre
 renderProducts();
 </script>
 </body>
-                                                               </html>
+ </html>
