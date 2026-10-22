@@ -60,6 +60,10 @@
 </div></div>
 
 <script>
+// اتصال به Supabase: کلید Publishable برای استفاده در مرورگر طراحی شده است.
+const SUPABASE_URL = 'https://uxdrbdesccezlxajksfl.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_PZPOw_nSc8NibEc-fippWA_St-cbDjE';
+
 const defaultProducts=[
 {id:1,name:'هدفون بی‌سیم',cat:'دیجیتال',emoji:'🎧',price:890000,old:1090000,desc:'مناسب موسیقی و مکالمه'},
 {id:2,name:'ساعت هوشمند',cat:'دیجیتال',emoji:'⌚',price:1250000,old:1490000,desc:'طراحی زیبا و کاربردی'},
@@ -119,12 +123,35 @@ function checkout(){
  <button class="primary" onclick="submitOrder()">ثبت سفارش و دریافت راهنمای پرداخت</button>`;
  document.getElementById('checkoutOverlay').classList.add('show');
 }
-function submitOrder(){
+async function submitOrder(){
  const name=document.getElementById('buyerName').value.trim(),phone=document.getElementById('buyerPhone').value.trim(),city=document.getElementById('buyerCity').value.trim(),address=document.getElementById('buyerAddress').value.trim();
  if(!name||!phone||!city||!address){toast('لطفاً اطلاعات ضروری را کامل کن');return}
- const order={id:Date.now(),name,phone,city,address,note:document.getElementById('buyerNote').value,items:Object.entries(cart).map(([id,q])=>{let p=products.find(x=>x.id==id);return {name:p?.name||'کالا',price:p?.price||0,qty:q}}),total:cartSum(),date:new Date().toLocaleString('fa-IR'),status:'در انتظار هماهنگی'};
- let orders=JSON.parse(localStorage.getItem('digishop_orders')||'[]');orders.unshift(order);localStorage.setItem('digishop_orders',JSON.stringify(orders));cart={};save();updateCount();
- document.getElementById('checkoutBody').innerHTML=`<div class="success"><b>سفارش در همین مرورگر ثبت شد.</b><br>شماره سفارش: ${fmt(order.id)}<br>مبلغ: ${fmt(order.total)} تومان<br><br>برای پرداخت کارت‌به‌کارت، ابتدا با فروشگاه هماهنگ کن. اطلاعات کارت فروشنده هنوز در تنظیمات سایت وارد نشده است؛ بنابراین هیچ شماره کارتی نمایش داده نمی‌شود و پولی منتقل نشده است.<br><br><b>توجه:</b> این نسخه آزمایشی است؛ سفارش‌ها فقط روی همین دستگاه و مرورگر ذخیره می‌شوند.</div><button class="primary" style="margin-top:12px" onclick="closeModal('checkoutOverlay');renderProducts()">بازگشت به فروشگاه</button>`;
+ const button=document.querySelector('#checkoutBody .primary');
+ if(button){button.disabled=true;button.textContent='در حال ثبت سفارش...'}
+ const orderItems=Object.entries(cart).map(([id,q])=>{let p=products.find(x=>x.id==id);return {name:p?.name||'کالا',price:p?.price||0,qty:q}});
+ const total=cartSum();
+ const note=document.getElementById('buyerNote').value.trim();
+ const fullAddress=`شهر: ${city} | نشانی: ${address}${note?' | توضیحات: '+note:''}`;
+ const payload={customer_name:name,customer_phone:phone,customer_address:fullAddress,items:orderItems,total_amount:total,payment_method:'card_to_card',payment_status:'pending',order_status:'new'};
+ try{
+   const response=await fetch(`${SUPABASE_URL}/rest/v1/orders`,{
+     method:'POST',
+     headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`,'Prefer':'return=minimal'},
+     body:JSON.stringify(payload)
+   });
+   if(!response.ok){let detail='';try{detail=await response.text()}catch(e){};throw new Error(detail||`HTTP ${response.status}`)}
+   const orderRef=Date.now();
+   const localOrder={id:orderRef,name,phone,city,address,note,items:orderItems,total,date:new Date().toLocaleString('fa-IR'),status:'ثبت‌شده در پایگاه داده آنلاین'};
+   let orders=JSON.parse(localStorage.getItem('digishop_orders')||'[]');orders.unshift(localOrder);localStorage.setItem('digishop_orders',JSON.stringify(orders));
+   cart={};save();updateCount();
+   document.getElementById('checkoutBody').innerHTML=`<div class="success"><b>سفارش با موفقیت در پایگاه داده آنلاین ثبت شد.</b><br>شماره پیگیری محلی: ${fmt(orderRef)}<br>مبلغ: ${fmt(total)} تومان<br><br>وضعیت پرداخت: در انتظار پرداخت و بررسی فروشنده.<br>ثبت سفارش به معنی پرداخت موفق نیست؛ قبل از انتقال پول، اطلاعات فروشنده را بررسی کن.<br><br><b>توجه:</b> این نسخه هنوز درگاه پرداخت ندارد و پنل مدیریت فعلی امن/آنلاین نیست.</div><button class="primary" style="margin-top:12px" onclick="closeModal('checkoutOverlay');renderProducts()">بازگشت به فروشگاه</button>`;
+ }catch(err){
+   console.error('Order submit failed:',err);
+   toast('ثبت آنلاین ناموفق بود؛ تنظیمات جدول و دسترسی را بررسی کن');
+   const msg=String(err.message||'').replace(/[<>]/g,'');
+   document.getElementById('checkoutBody').insertAdjacentHTML('beforeend',`<div class="hint">سفارش در پایگاه داده ثبت نشد. لطفاً اتصال اینترنت و تنظیمات جدول orders را بررسی کن. جزئیات فنی: ${esc(msg.slice(0,220))}</div>`);
+   if(button){button.disabled=false;button.textContent='تلاش دوباره برای ثبت سفارش'}
+ }
 }
 function openAdmin(){
  document.getElementById('adminBody').innerHTML=`<div class="hint">پنل آزمایشی است و رمز ورود واقعی/سرور ندارد. برای نسخه عمومی، پنل مدیریت باید با ورود امن و پایگاه داده محافظت شود.</div>
@@ -158,4 +185,4 @@ function toast(msg){let t=document.getElementById('toast');if(!t){t=document.cre
 renderProducts();
 </script>
 </body>
-</html>
+                                                               </html>
