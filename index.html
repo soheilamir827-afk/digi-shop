@@ -2,258 +2,241 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#e6123d">
-<title>دیجی شاپ | فروشگاه اینترنتی</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#6d28d9">
+<title>دیجی‌شاپ | فروشگاه اینترنتی</title>
 <style>
-:root{--red:#e6123d;--red2:#c90d32;--ink:#232933;--muted:#777f8c;--line:#e9ebef;--bg:#f5f6f8;--green:#16a34a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}a{color:inherit;text-decoration:none}
-.top{background:#20242c;color:#fff;text-align:center;font-size:12px;padding:8px}.header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.headin{max-width:1200px;margin:auto;padding:14px 16px;display:flex;gap:14px;align-items:center}.logo{font-size:23px;font-weight:900;color:var(--red);white-space:nowrap}.logo span{color:#242a34}.search{flex:1;display:flex;background:#f1f2f5;border-radius:10px;overflow:hidden}.search input{border:0;background:transparent;padding:12px;width:100%;outline:none}.search button{background:var(--red);color:white;padding:0 18px}.headbtn{background:#fff;border:1px solid #dfe2e8;border-radius:9px;padding:10px 12px;white-space:nowrap}.headbtn strong{color:var(--red)}.nav{max-width:1200px;margin:auto;padding:0 16px 12px;display:flex;gap:20px;overflow:auto;font-size:13px;color:#555}.nav a{white-space:nowrap}.wrap{max-width:1200px;margin:18px auto;padding:0 16px}.hero{background:linear-gradient(110deg,#b90b31,#f0445e);border-radius:16px;padding:25px;color:white;display:flex;justify-content:space-between;align-items:center;min-height:170px;overflow:hidden}.hero h1{font-size:26px;margin:0 0 10px}.hero p{margin:0;line-height:1.9;font-size:14px}.hero .bubble{font-size:65px;filter:drop-shadow(0 8px 10px #6f001f55)}.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}.quick button{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 8px;color:#444}.quick .emoji{display:block;font-size:26px;margin-bottom:8px}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:22px 0 13px}.sectionhead h2{font-size:19px;margin:0}.sectionhead small{color:var(--muted)}.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.card{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:.15s;display:flex;flex-direction:column}.card:hover{transform:translateY(-2px);box-shadow:0 8px 22px #17203310}.pic{height:155px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-size:65px;position:relative}.badge{position:absolute;top:10px;right:10px;background:var(--red);color:#fff;font-size:11px;padding:5px 7px;border-radius:5px}.info{padding:12px;display:flex;flex-direction:column;flex:1}.name{font-size:13px;line-height:1.9;min-height:48px}.desc{font-size:11px;color:var(--muted);margin:5px 0 10px}.price{font-weight:bold;font-size:15px;margin-top:auto}.price small{font-size:11px;font-weight:normal;color:#555}.old{font-size:11px;color:#9ba1aa;text-decoration:line-through;margin:7px 0}.add{background:var(--red);color:#fff;border-radius:8px;padding:10px;margin-top:10px}.add:hover,.primary:hover{background:var(--red2)}.empty{background:#fff;padding:28px;border:1px solid var(--line);border-radius:12px;text-align:center;color:var(--muted);grid-column:1/-1}.footer{margin-top:35px;background:#fff;border-top:1px solid var(--line);padding:25px 16px;text-align:center;color:#777;font-size:12px;line-height:2}
-.overlay{position:fixed;inset:0;background:#10152288;z-index:10;display:none;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}.modal{background:#fff;border-radius:15px;width:min(600px,100%);max-height:90vh;overflow:auto;padding:20px}.modalhead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:15px}.modalhead h2{font-size:19px;margin:0}.x{background:#f1f2f5;border-radius:8px;padding:7px 11px}.cartrow{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.cartemoji{font-size:32px}.carttext{flex:1;font-size:13px;line-height:1.8}.qty{display:flex;gap:9px;align-items:center}.qty button{background:#f2f3f5;border-radius:6px;padding:5px 9px}.total{display:flex;justify-content:space-between;font-weight:bold;padding:17px 0}.primary{background:var(--red);color:#fff;padding:12px 16px;border-radius:9px;width:100%}.secondary{background:#f0f1f4;padding:11px 14px;border-radius:8px}.field{display:flex;flex-direction:column;gap:7px;margin:12px 0}.field label{font-size:13px;color:#555}.field input,.field select,.field textarea{border:1px solid #dfe2e8;border-radius:8px;padding:11px;outline-color:var(--red);width:100%;background:white}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{font-size:12px;line-height:1.9;color:#666;background:#fff8e8;padding:12px;border-radius:8px;margin:10px 0}.success{background:#effaf2;color:#166534;padding:13px;border-radius:8px;line-height:1.9;font-size:13px}.adminlist{font-size:12px;line-height:1.9}.adminitem{border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0}.adminitem button{background:#fee2e2;color:#991b1b;border-radius:6px;padding:6px 9px;margin-top:6px}.smallbtn{border:1px solid var(--line);background:white;border-radius:8px;padding:8px 10px}
-@media(max-width:750px){.headin{flex-wrap:wrap;gap:9px}.logo{font-size:21px}.search{order:3;flex-basis:100%}.headbtn{margin-right:auto}.nav{gap:16px}.hero{min-height:145px;padding:20px}.hero h1{font-size:21px}.hero .bubble{font-size:48px}.quick{grid-template-columns:repeat(5,minmax(66px,1fr));overflow:auto}.quick button{font-size:11px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.pic{height:125px;font-size:52px}.info{padding:10px}.name{font-size:12px}.sectionhead h2{font-size:16px}}
-@media(min-width:751px) and (max-width:1000px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
-
-/* DigiShop polished admin/catalog additions */
-.card{box-shadow:0 3px 14px #17203308}.pic{background:linear-gradient(145deg,#fff7f8,#f4f5f8)}
-.hero{box-shadow:0 12px 28px #b90b3120}.add,.primary{font-weight:700;transition:background .15s,transform .15s}.add:active,.primary:active{transform:scale(.99)}
-.adminitem{background:#fff;padding:13px}.adminitem .field{margin:9px 0}.admin-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.status-pill{display:inline-block;background:#fff7ed;color:#9a3412;border-radius:20px;padding:4px 9px;font-size:11px}
-@media(max-width:480px){.modal{padding:14px}.hero{border-radius:13px}.pic{height:115px}.add{font-size:12px;padding:9px 5px}}
+:root{--brand:#6d28d9;--brand2:#8b5cf6;--ink:#172033;--muted:#64748b;--line:#e8eaf2;--bg:#f7f8fc;--white:#fff;--green:#059669;--red:#dc2626;--shadow:0 12px 35px rgba(23,32,51,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}a{color:inherit;text-decoration:none}.wrap{max-width:1200px;margin:auto;padding:0 18px}.top-note{background:#25134a;color:#fff;text-align:center;padding:7px 12px;font-size:12px}.header{background:#fff;position:sticky;top:0;z-index:20;box-shadow:0 4px 20px #1720330b}.head-row{display:flex;gap:18px;align-items:center;padding:15px 0}.logo{font-size:26px;font-weight:900;color:var(--brand);white-space:nowrap}.logo span{color:#f59e0b}.search{display:flex;flex:1;min-width:100px;background:#f4f5fa;border:1px solid #eceef5;border-radius:14px;overflow:hidden}.search input{border:0;background:transparent;padding:12px 14px;outline:none;width:100%;min-width:0}.search button{background:var(--brand);color:white;padding:0 17px}.cart-btn,.outline-btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;font-weight:bold;white-space:nowrap}.cart-btn b{background:#f59e0b;color:#24133f;border-radius:50%;display:inline-flex;min-width:23px;height:23px;align-items:center;justify-content:center;margin-right:4px}.nav{display:flex;gap:8px;overflow:auto;padding:0 0 12px}.nav button{background:transparent;color:#475569;padding:7px 13px;border-radius:10px;white-space:nowrap}.nav button.active,.nav button:hover{background:#f1eafe;color:var(--brand)}.hero{margin:24px auto 20px;border-radius:24px;overflow:hidden;background:linear-gradient(115deg,#281052,#6d28d9 65%,#a78bfa);color:#fff;min-height:245px;display:grid;grid-template-columns:1.4fr .8fr;align-items:center;padding:32px 5%;position:relative}.hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:#ffffff12;left:10%;top:-100px}.hero h1{font-size:clamp(26px,4vw,42px);line-height:1.5;margin:0 0 8px}.hero p{color:#e9ddff;margin:0 0 20px}.hero .cta{background:#fbbf24;color:#32145b;padding:11px 18px;border-radius:12px;font-weight:900}.hero-art{text-align:center;font-size:clamp(80px,13vw,145px);filter:drop-shadow(0 18px 16px #16072e55);z-index:1}.chips{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px auto 30px}.chip{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px 8px;text-align:center;font-weight:bold;transition:.2s}.chip span{display:block;font-size:30px;margin-bottom:4px}.chip:hover{transform:translateY(-3px);border-color:#c4b5fd;box-shadow:var(--shadow)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:26px 0 14px}.section-head h2{margin:0;font-size:23px}.section-head p{margin:0;color:var(--muted);font-size:13px}.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.product{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;min-width:0;position:relative;transition:.2s;display:flex;flex-direction:column}.product:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.badge{position:absolute;right:12px;top:12px;background:#fff1d6;color:#a16207;font-size:11px;padding:3px 8px;border-radius:8px}.prod-art{height:145px;background:linear-gradient(135deg,#f7f3ff,#f4f7ff);border-radius:13px;display:grid;place-items:center;font-size:68px;margin-bottom:12px}.product h3{font-size:15px;margin:0 0 3px}.desc{color:var(--muted);font-size:12px;min-height:24px;margin:0 0 10px}.prices{margin-top:auto;min-height:48px}.old{color:#94a3b8;text-decoration:line-through;font-size:12px}.price{font-weight:900;color:var(--brand);font-size:17px}.add{background:var(--brand);color:#fff;border-radius:11px;padding:10px;margin-top:12px;font-weight:bold}.add:hover,.primary:hover{background:#5b21b6}.empty{background:#fff;border:1px dashed #cbd5e1;border-radius:16px;padding:30px;text-align:center;color:var(--muted);grid-column:1/-1}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px auto}.benefit{background:#fff;border:1px solid var(--line);padding:16px;border-radius:15px;display:flex;gap:12px;align-items:center}.benefit strong{display:block}.benefit small{color:var(--muted)}footer{margin-top:45px;background:#21123f;color:#eee3ff;padding:30px 0 18px}.foot-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot-row p{margin:4px 0;color:#c9b9e8;font-size:13px}.admin-entry{background:transparent;color:#e9d5ff;text-decoration:underline;padding:8px 0;margin-top:12px}.overlay{position:fixed;inset:0;background:#0f172a99;z-index:50;display:none;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}.modal{background:#fff;border-radius:20px;width:min(760px,100%);max-height:92vh;overflow:auto;padding:22px;box-shadow:0 25px 90px #0003}.modal.small{width:min(450px,100%)}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.modal-head h2{font-size:21px;margin:0}.close{background:#f1f5f9;border-radius:10px;width:38px;height:38px;font-size:22px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}.field label{font-size:13px;font-weight:bold}.field input,.field textarea,.field select{width:100%;padding:11px 12px;border:1px solid #dbe1ec;border-radius:11px;outline:none;background:#fff}.field input:focus,.field textarea:focus,.field select:focus{border-color:#8b5cf6;box-shadow:0 0 0 3px #8b5cf622}.primary{background:var(--brand);color:white;border-radius:11px;padding:11px 16px;font-weight:bold}.secondary{background:#f1eafe;color:var(--brand);border-radius:11px;padding:10px 14px;font-weight:bold}.danger{background:#fee2e2;color:#b91c1c;border-radius:10px;padding:8px 11px}.success{background:#dcfce7;color:#166534;padding:10px 12px;border-radius:10px;margin:10px 0}.error{background:#fee2e2;color:#991b1b;padding:10px 12px;border-radius:10px;margin:10px 0}.muted{color:var(--muted);font-size:12px}.cart-line{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.qty{display:flex;align-items:center;gap:8px}.qty button{width:28px;height:28px;border-radius:8px;background:#f1eafe;color:var(--brand);font-weight:bold}.total-line{display:flex;justify-content:space-between;font-size:18px;font-weight:bold;padding:15px 0}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tabs button{background:#f1f5f9;border-radius:10px;padding:9px 13px}.tabs button.active{background:#ede9fe;color:var(--brand);font-weight:bold}.admin-panel{margin:20px 0 35px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px;min-width:580px}th,td{text-align:right;border-bottom:1px solid var(--line);padding:11px 9px;vertical-align:top}th{background:#f8fafc;color:#475569}td select{padding:6px;border:1px solid #dbe1ec;border-radius:8px}.status{display:inline-block;padding:3px 8px;border-radius:7px;background:#fef3c7;color:#92400e;font-size:11px}.status.paid,.status.delivered{background:#dcfce7;color:#166534}.status.cancelled{background:#fee2e2;color:#991b1b}.admin-product{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}.admin-product .emoji{font-size:28px}.admin-product .info{flex:1;min-width:0}.admin-product .info strong{display:block}.admin-product .info small{color:var(--muted)}.admin-actions{display:flex;gap:6px;flex-wrap:wrap}.admin-actions button{padding:7px 9px;border-radius:8px;font-size:12px}.loading{text-align:center;color:var(--muted);padding:22px}.hidden{display:none!important}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#172033;color:#fff;padding:12px 18px;border-radius:12px;z-index:100;box-shadow:var(--shadow);display:none;max-width:90vw;text-align:center}.toast.show{display:block}.subtle{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1.5fr .6fr}.prod-art{height:125px}}
+@media(max-width:650px){.head-row{gap:9px;flex-wrap:wrap}.logo{font-size:23px}.search{order:3;flex-basis:100%}.cart-btn{margin-right:auto}.hero{padding:24px 20px;min-height:210px;grid-template-columns:1fr .55fr}.hero-art{font-size:72px}.chips{grid-template-columns:repeat(5,minmax(65px,1fr));gap:7px}.chip{padding:11px 3px;font-size:11px}.chip span{font-size:25px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product{padding:10px;border-radius:14px}.prod-art{height:110px;font-size:53px}.product h3{font-size:13px}.price{font-size:15px}.add{font-size:12px;padding:9px 5px}.benefits{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.modal{padding:16px}.cart-line{grid-template-columns:1fr auto}.cart-line .line-price{grid-column:1}.section-head h2{font-size:20px}}
 </style>
 </head>
 <body>
-<div class="top">ارسال سفارش‌ها پس از هماهنگی با فروشگاه | فروشگاه اینترنتی دیجی شاپ</div>
+<div class="top-note">ارسال سفارش پس از هماهنگی با فروشگاه • قیمت‌ها به تومان هستند</div>
 <header class="header">
- <div class="headin">
-  <a class="logo" href="#" onclick="return false">دیجی <span>شاپ</span></a>
-  <div class="search"><input id="search" placeholder="جست‌وجو در محصولات دیجی شاپ..." oninput="renderProducts()"><button onclick="renderProducts()">جست‌وجو</button></div>
-  <button class="headbtn" onclick="openCart()">🛒 سبد خرید <strong id="cartcount">۰</strong></button>
- </div>
- <nav class="nav">
-  <a href="#" onclick="filterCat('همه');return false">همه محصولات</a><a href="#" onclick="filterCat('دیجیتال');return false">موبایل و دیجیتال</a><a href="#" onclick="filterCat('خانه');return false">خانه و آشپزخانه</a><a href="#" onclick="filterCat('پوشاک');return false">پوشاک و کفش</a><a href="#" onclick="filterCat('زیبایی');return false">زیبایی و سلامت</a><a href="#" onclick="filterCat('ورزش');return false">ورزش و سفر</a><a href="#" onclick="filterCat('سایر');return false">سایر کالاها</a>
- </nav>
+  <div class="wrap">
+    <div class="head-row">
+      <a class="logo" href="#" aria-label="دیجی شاپ">دیجی<span>شاپ</span></a>
+      <form class="search" id="searchForm"><input id="searchInput" type="search" placeholder="جست‌وجو در محصولات دیجی‌شاپ..." aria-label="جست‌وجوی محصولات"><button type="submit">جست‌وجو</button></form>
+      <button class="cart-btn" id="openCart">🛒 سبد خرید <b id="cartCount">۰</b></button>
+    </div>
+    <nav class="nav" id="categoryNav">
+      <button class="active" data-cat="همه">همه محصولات</button>
+      <button data-cat="موبایل و دیجیتال">موبایل و دیجیتال</button>
+      <button data-cat="خانه و آشپزخانه">خانه و آشپزخانه</button>
+      <button data-cat="پوشاک و کفش">پوشاک و کفش</button>
+      <button data-cat="زیبایی و سلامت">زیبایی و سلامت</button>
+      <button data-cat="ورزش و سفر">ورزش و سفر</button>
+      <button data-cat="سایر کالاها">سایر کالاها</button>
+    </nav>
+  </div>
 </header>
 <main class="wrap">
- <section class="hero"><div><h1>به دیجی شاپ خوش آمدید!</h1><p>خرید آسان، انتخاب متنوع<br>محصول موردنظرت رو پیدا کن و سفارش بده.</p></div><div class="bubble">🛍️</div></section>
- <div class="quick">
-  <button onclick="filterCat('دیجیتال')"><span class="emoji">📱</span>دیجیتال</button>
-  <button onclick="filterCat('خانه')"><span class="emoji">🏠</span>خانه</button>
-  <button onclick="filterCat('پوشاک')"><span class="emoji">👟</span>پوشاک</button>
-  <button onclick="filterCat('زیبایی')"><span class="emoji">🧴</span>زیبایی</button>
-  <button onclick="filterCat('ورزش')"><span class="emoji">⚽</span>ورزش</button>
- </div>
- <div class="sectionhead"><h2 id="productTitle">محصولات پیشنهادی</h2><small id="resultCount"></small></div>
- <section class="products" id="products"></section>
+  <section class="hero">
+    <div><h1>به دیجی‌شاپ خوش آمدید!</h1><p>خرید آسان، انتخاب متنوع<br>محصول موردنظرت رو پیدا کن و سفارش بده.</p><a class="cta" href="#products">مشاهده محصولات ←</a></div>
+    <div class="hero-art" aria-hidden="true">🛍️</div>
+  </section>
+  <section class="chips" aria-label="دسته‌بندی سریع">
+    <button class="chip" data-chip="موبایل و دیجیتال"><span>📱</span>دیجیتال</button>
+    <button class="chip" data-chip="خانه و آشپزخانه"><span>🏠</span>خانه</button>
+    <button class="chip" data-chip="پوشاک و کفش"><span>👟</span>پوشاک</button>
+    <button class="chip" data-chip="زیبایی و سلامت"><span>🧴</span>زیبایی</button>
+    <button class="chip" data-chip="ورزش و سفر"><span>⚽</span>ورزش</button>
+  </section>
+  <div class="section-head" id="products"><div><h2>محصولات پیشنهادی</h2><p>انتخاب‌هایی برای خرید بهتر</p></div><span class="muted" id="productCount">در حال بارگذاری...</span></div>
+  <section class="product-grid" id="productGrid"><div class="loading">در حال دریافت محصولات…</div></section>
+  <section class="benefits">
+    <div class="benefit"><span style="font-size:30px">📦</span><div><strong>ثبت سفارش آسان</strong><small>ثبت سفارش در چند مرحله کوتاه</small></div></div>
+    <div class="benefit"><span style="font-size:30px">☎️</span><div><strong>هماهنگی با فروشگاه</strong><small>برای نهایی‌کردن سفارش با شما هماهنگ می‌شویم</small></div></div>
+    <div class="benefit"><span style="font-size:30px">🔒</span><div><strong>اطلاعات سفارش</strong><small>اطلاعات لازم برای پیگیری سفارش ثبت می‌شود</small></div></div>
+  </section>
 </main>
-<footer class="footer">
- <b style="color:#e6123d;font-size:18px">دیجی شاپ</b><br>
- فروشگاه اینترنتی کالاهای متنوع<br>
- برای ثبت سفارش، محصول را به سبد خرید اضافه کنید و فرم سفارش را تکمیل کنید.<br>
- <button class="smallbtn" onclick="openAdmin()">ورود مدیریت فروشگاه</button>
-</footer>
+<footer><div class="wrap foot-row"><div><div class="logo" style="color:white">دیجی<span>شاپ</span></div><p>فروشگاه اینترنتی کالاهای متنوع</p><p>برای ثبت سفارش، محصول را به سبد خرید اضافه کنید و فرم سفارش را تکمیل کنید.</p></div><div><strong>پشتیبانی و مدیریت</strong><p>سفارش‌ها پس از ثبت با فروشگاه هماهنگ می‌شوند.</p><button class="admin-entry" id="openAdminLogin">ورود مدیریت فروشگاه</button></div></div><div class="wrap subtle" style="border-top:1px solid #ffffff20;margin-top:20px;padding-top:12px;color:#c9b9e8">© دیجی‌شاپ — تمامی حقوق محفوظ است.</div></footer>
 
-<div class="overlay" id="cartOverlay" onclick="overlayClose(event,'cartOverlay')"><div class="modal">
- <div class="modalhead"><h2>سبد خرید شما</h2><button class="x" onclick="closeModal('cartOverlay')">✕</button></div>
- <div id="cartItems"></div><div class="total"><span>مبلغ کل</span><span id="cartTotal">۰ تومان</span></div>
- <button class="primary" onclick="checkout()">ثبت سفارش</button>
-</div></div>
-<div class="overlay" id="checkoutOverlay" onclick="overlayClose(event,'checkoutOverlay')"><div class="modal">
- <div class="modalhead"><h2>ثبت سفارش و پرداخت کارت‌به‌کارت</h2><button class="x" onclick="closeModal('checkoutOverlay')">✕</button></div>
- <div id="checkoutBody"></div>
-</div></div>
-<div class="overlay" id="adminOverlay" onclick="overlayClose(event,'adminOverlay')"><div class="modal">
- <div class="modalhead"><h2>پنل مدیریت دیجی شاپ</h2><button class="x" onclick="closeModal('adminOverlay')">✕</button></div>
- <div id="adminBody"></div>
-</div></div>
+<div class="overlay" id="cartOverlay"><div class="modal small"><div class="modal-head"><h2>🛒 سبد خرید شما</h2><button class="close" data-close="cartOverlay">×</button></div><div id="cartItems"></div><div class="total-line"><span>مبلغ کل</span><span id="cartTotal">۰ تومان</span></div><button class="primary" id="goCheckout" style="width:100%">ادامه و ثبت سفارش</button><p class="muted">ثبت سفارش به معنی پرداخت آنلاین نیست؛ فروشگاه برای هماهنگی با شما تماس می‌گیرد.</p></div></div>
 
+<div class="overlay" id="checkoutOverlay"><div class="modal"><div class="modal-head"><h2>ثبت سفارش</h2><button class="close" data-close="checkoutOverlay">×</button></div><form id="checkoutForm"><div class="form-grid"><div class="field"><label for="customerName">نام و نام خانوادگی *</label><input id="customerName" required maxlength="100" autocomplete="name"></div><div class="field"><label for="customerPhone">شماره تماس *</label><input id="customerPhone" required inputmode="tel" maxlength="30" autocomplete="tel" placeholder="مثلاً 09123456789"></div></div><div class="field"><label for="customerAddress">نشانی کامل *</label><textarea id="customerAddress" required rows="3" maxlength="1000" autocomplete="street-address" placeholder="شهر، خیابان، پلاک و جزئیات نشانی"></textarea></div><div class="field"><label for="paymentMethod">روش پرداخت</label><select id="paymentMethod"><option value="coordination">هماهنگی با فروشگاه</option><option value="card_to_card">کارت‌به‌کارت پس از هماهنگی</option><option value="cash_on_delivery">پرداخت هنگام تحویل (در صورت تأیید فروشگاه)</option></select></div><div class="success">پس از ثبت، سفارش در پنل مدیریت نمایش داده می‌شود. هیچ پرداختی در این صفحه انجام نمی‌شود.</div><div class="total-line"><span>مبلغ سفارش</span><span id="checkoutTotal">۰ تومان</span></div><button class="primary" type="submit" style="width:100%">ثبت نهایی سفارش</button><div id="checkoutMessage"></div></form></div></div>
+
+<div class="overlay" id="loginOverlay"><div class="modal small"><div class="modal-head"><h2>ورود مدیریت فروشگاه</h2><button class="close" data-close="loginOverlay">×</button></div><form id="loginForm"><div class="field"><label for="adminEmail">ایمیل مدیریت</label><input id="adminEmail" type="email" required autocomplete="username" placeholder="ایمیل مدیر"></div><div class="field"><label for="adminPassword">رمز عبور</label><input id="adminPassword" type="password" required autocomplete="current-password" placeholder="رمز عبور مدیر"></div><button class="primary" type="submit" style="width:100%">ورود امن</button><div id="loginMessage"></div></form><p class="muted">ورود با حساب کاربری Supabase انجام می‌شود. رمز عبور را با کسی به اشتراک نگذارید.</p></div></div>
+
+<div class="overlay" id="adminOverlay"><div class="modal"><div class="modal-head"><div><h2>پنل مدیریت دیجی‌شاپ</h2><div class="muted" id="adminWelcome">مدیریت محصولات و سفارش‌ها</div></div><button class="close" id="closeAdmin">×</button></div><div class="tabs"><button class="active" data-tab="ordersTab">📦 سفارش‌ها</button><button data-tab="productsTab">🛍️ محصولات</button><button data-tab="addProductTab">＋ افزودن محصول</button></div><div id="adminMessage"></div><section id="ordersTab"><div class="section-head"><h2>سفارش‌های ثبت‌شده</h2><button class="secondary" id="refreshOrders">به‌روزرسانی</button></div><div class="table-wrap" id="ordersTable"><div class="loading">در حال بارگذاری سفارش‌ها…</div></div></section><section id="productsTab" class="hidden"><div class="section-head"><h2>مدیریت محصولات</h2><button class="secondary" id="refreshProducts">به‌روزرسانی</button></div><p class="muted">محصول فعال در سایت نمایش داده می‌شود. حذف محصول، آن را از فهرست فروشگاه پاک می‌کند.</p><div id="adminProductsList"></div></section><section id="addProductTab" class="hidden"><h2>افزودن محصول جدید</h2><form id="productForm"><input type="hidden" id="editProductId"><div class="form-grid"><div class="field"><label for="productName">نام محصول *</label><input id="productName" required maxlength="150"></div><div class="field"><label for="productCategory">دسته‌بندی *</label><select id="productCategory" required><option>موبایل و دیجیتال</option><option>خانه و آشپزخانه</option><option>پوشاک و کفش</option><option>زیبایی و سلامت</option><option>ورزش و سفر</option><option>سایر کالاها</option></select></div><div class="field"><label for="productEmoji">نماد/ایموجی</label><input id="productEmoji" maxlength="12" value="🛍️"></div><div class="field"><label for="productPrice">قیمت فعلی به تومان *</label><input id="productPrice" type="number" required min="0" step="1"></div><div class="field"><label for="productOldPrice">قیمت قبلی (اختیاری)</label><input id="productOldPrice" type="number" min="0" step="1"></div><div class="field"><label for="productActive">وضعیت نمایش</label><select id="productActive"><option value="true">فعال و قابل مشاهده</option><option value="false">غیرفعال و پنهان</option></select></div></div><div class="field"><label for="productDescription">توضیحات</label><textarea id="productDescription" rows="2" maxlength="500"></textarea></div><button class="primary" type="submit" id="saveProductBtn">ذخیره محصول</button> <button class="secondary" type="button" id="cancelEditBtn">پاک‌کردن فرم</button></form></section><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);margin-top:22px;padding-top:14px"><span class="muted">پس از پایان کار از حساب مدیریت خارج شوید.</span><button class="danger" id="logoutAdmin">خروج از مدیریت</button></div></div></div>
+<div class="toast" id="toast"></div>
 <script>
-// اتصال به Supabase: کلید Publishable برای استفاده در مرورگر طراحی شده است.
-const SUPABASE_URL = 'https://uxdrbdesccezlxajksfl.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_PZPOw_nSc8NibEc-fippWA_St-cbDjE';
-
-const defaultProducts=[
-{id:1,name:'هدفون بی‌سیم',cat:'دیجیتال',emoji:'🎧',price:890000,old:1090000,desc:'مناسب موسیقی و مکالمه'},
-{id:2,name:'ساعت هوشمند',cat:'دیجیتال',emoji:'⌚',price:1250000,old:1490000,desc:'طراحی زیبا و کاربردی'},
-{id:3,name:'گوشی موبایل',cat:'دیجیتال',emoji:'📱',price:8900000,old:9500000,desc:'نمونه نمایشی محصول'},
-{id:4,name:'اسپیکر بلوتوثی',cat:'دیجیتال',emoji:'🔊',price:760000,old:890000,desc:'صدای قابل حمل'},
-{id:5,name:'چراغ مطالعه',cat:'خانه',emoji:'💡',price:420000,old:0,desc:'مناسب میز کار و مطالعه'},
-{id:6,name:'ماگ سرامیکی',cat:'خانه',emoji:'☕',price:185000,old:220000,desc:'مناسب خانه و محل کار'},
-{id:7,name:'مخلوط‌کن',cat:'خانه',emoji:'🥤',price:1450000,old:0,desc:'برای نوشیدنی‌های خانگی'},
-{id:8,name:'بالش طبی',cat:'خانه',emoji:'🛏️',price:590000,old:650000,desc:'راحتی برای استراحت'},
-{id:9,name:'کفش روزمره',cat:'پوشاک',emoji:'👟',price:1150000,old:1390000,desc:'مناسب استفاده روزانه'},
-{id:10,name:'هودی اسپرت',cat:'پوشاک',emoji:'🧥',price:980000,old:0,desc:'استایل راحت و روزمره'},
-{id:11,name:'کوله‌پشتی',cat:'پوشاک',emoji:'🎒',price:670000,old:790000,desc:'مناسب مدرسه و سفر'},
-{id:12,name:'عینک آفتابی',cat:'پوشاک',emoji:'🕶️',price:390000,old:0,desc:'اکسسوری روزمره'},
-{id:13,name:'کرم مرطوب‌کننده',cat:'زیبایی',emoji:'🧴',price:245000,old:290000,desc:'مناسب مراقبت روزانه'},
-{id:14,name:'عطر جیبی',cat:'زیبایی',emoji:'🧴',price:175000,old:0,desc:'رایحه دلپذیر و جمع‌وجور'},
-{id:15,name:'توپ فوتبال',cat:'ورزش',emoji:'⚽',price:530000,old:610000,desc:'برای تمرین و بازی'},
-{id:16,name:'قمقمه ورزشی',cat:'ورزش',emoji:'🚰',price:160000,old:0,desc:'مناسب باشگاه و سفر'},
-{id:17,name:'کتاب داستان',cat:'سایر',emoji:'📚',price:220000,old:0,desc:'برای اوقات فراغت'},
-{id:18,name:'جعبه ابزار کوچک',cat:'سایر',emoji:'🧰',price:480000,old:0,desc:'ابزارهای کاربردی'}
+'use strict';
+const SUPABASE_URL='https://uxdrbdesccezlxajksfl.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_PZPOw_nSc8NibEc-fippWA_St-cbDjE';
+const API=SUPABASE_URL+'/rest/v1';
+const FALLBACK_PRODUCTS=[
+{id:1,name:'هدفون بی‌سیم',category:'موبایل و دیجیتال',emoji:'🎧',price:890000,old_price:1090000,description:'مناسب موسیقی و مکالمه',active:true},
+{id:2,name:'ساعت هوشمند',category:'موبایل و دیجیتال',emoji:'⌚',price:1250000,old_price:1490000,description:'طراحی زیبا و کاربردی',active:true},
+{id:3,name:'گوشی موبایل',category:'موبایل و دیجیتال',emoji:'📱',price:8900000,old_price:9500000,description:'نمونه نمایشی محصول',active:true},
+{id:4,name:'اسپیکر بلوتوثی',category:'موبایل و دیجیتال',emoji:'🔊',price:760000,old_price:890000,description:'صدای قابل حمل',active:true},
+{id:5,name:'چراغ مطالعه',category:'خانه و آشپزخانه',emoji:'💡',price:420000,old_price:null,description:'مناسب میز کار و مطالعه',active:true},
+{id:6,name:'ماگ سرامیکی',category:'خانه و آشپزخانه',emoji:'☕',price:185000,old_price:220000,description:'مناسب خانه و محل کار',active:true},
+{id:7,name:'مخلوط‌کن',category:'خانه و آشپزخانه',emoji:'🥤',price:1450000,old_price:null,description:'برای نوشیدنی‌های خانگی',active:true},
+{id:8,name:'بالش طبی',category:'خانه و آشپزخانه',emoji:'🛏️',price:590000,old_price:650000,description:'راحتی برای استراحت',active:true},
+{id:9,name:'کفش روزمره',category:'پوشاک و کفش',emoji:'👟',price:1150000,old_price:1390000,description:'مناسب استفاده روزانه',active:true},
+{id:10,name:'هودی اسپرت',category:'پوشاک و کفش',emoji:'🧥',price:980000,old_price:null,description:'استایل راحت و روزمره',active:true},
+{id:11,name:'کوله‌پشتی',category:'پوشاک و کفش',emoji:'🎒',price:670000,old_price:790000,description:'مناسب مدرسه و سفر',active:true},
+{id:12,name:'عینک آفتابی',category:'پوشاک و کفش',emoji:'🕶️',price:390000,old_price:null,description:'اکسسوری روزمره',active:true},
+{id:13,name:'کرم مرطوب‌کننده',category:'زیبایی و سلامت',emoji:'🧴',price:245000,old_price:290000,description:'مناسب مراقبت روزانه',active:true},
+{id:14,name:'عطر جیبی',category:'زیبایی و سلامت',emoji:'🧴',price:175000,old_price:null,description:'رایحه دلپذیر و جمع‌وجور',active:true},
+{id:15,name:'توپ فوتبال',category:'ورزش و سفر',emoji:'⚽',price:530000,old_price:610000,description:'برای تمرین و بازی',active:true},
+{id:16,name:'قمقمه ورزشی',category:'ورزش و سفر',emoji:'🚰',price:160000,old_price:null,description:'مناسب باشگاه و سفر',active:true},
+{id:17,name:'کتاب داستان',category:'سایر کالاها',emoji:'📚',price:220000,old_price:null,description:'برای اوقات فراغت',active:true},
+{id:18,name:'جعبه ابزار کوچک',category:'سایر کالاها',emoji:'🧰',price:480000,old_price:null,description:'ابزارهای کاربردی',active:true}
 ];
-let products=defaultProducts.slice();
-let cart=JSON.parse(localStorage.getItem('digishop_cart')||'{}');
-let currentCat='همه';
-let onlineProductsReady=false;
-const fmt=n=>Number(n||0).toLocaleString('fa-IR');
-function save(){localStorage.setItem('digishop_cart',JSON.stringify(cart))}
-function mapProductRow(p){return {id:Number(p.id),name:p.name,cat:p.category||'سایر',emoji:p.emoji||'📦',price:Number(p.price||0),old:Number(p.old_price||0),desc:p.description||''}}
-async function loadOnlineProducts(showError=false){
- try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&active=eq.true&order=id.asc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`}});
- if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||`HTTP ${r.status}`)}
- const rows=await r.json();if(Array.isArray(rows)&&rows.length){products=rows.map(mapProductRow);onlineProductsReady=true;renderProducts();if(showError)toast('محصولات آنلاین به‌روزرسانی شدند')}else{onlineProductsReady=true;products=defaultProducts.slice();renderProducts();if(showError)toast('فهرست آنلاین خالی است؛ از پنل مدیر محصولات اولیه را منتشر کن')}
- }catch(e){console.error('Online products unavailable',e);if(showError)toast('دریافت محصولات آنلاین ناموفق بود؛ تنظیمات جدول products را بررسی کن');renderProducts()}
+let products=[],cart=[],selectedCategory='همه',searchTerm='',adminSession=null,adminRefreshToken=null;
+const $=id=>document.getElementById(id);
+const fmt=n=>new Intl.NumberFormat('fa-IR').format(Math.round(Number(n)||0));
+const money=n=>fmt(n)+' تومان';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),3200)}
+function showOverlay(id){$(id).classList.add('show')}
+function hideOverlay(id){$(id).classList.remove('show')}
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>hideOverlay(b.dataset.close)));
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('show')}));
+async function api(path,{method='GET',body,token,prefer}={}){
+ const headers={'apikey':SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'};
+ headers.Authorization='Bearer '+(token||SUPABASE_PUBLISHABLE_KEY);
+ if(prefer)headers.Prefer=prefer;
+ const res=await fetch(API+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body)});
+ const txt=await res.text();let data=null;try{data=txt?JSON.parse(txt):null}catch{data=txt}
+ if(!res.ok){let message=data?.message||data?.hint||data?.details||data?.error_description||data?.error||('خطای سرور ('+res.status+')');throw new Error(message)}
+ return data;
+}
+function mapProduct(p){return {...p,id:Number(p.id),price:Number(p.price)||0,old_price:p.old_price==null?null:Number(p.old_price),emoji:p.emoji||'🛍️',category:p.category||'سایر کالاها',description:p.description||'',active:p.active!==false}}
+async function loadProducts(){
+ try{
+  const data=await api('/products?select=*&active=eq.true&order=id.asc');
+  products=Array.isArray(data)?data.map(mapProduct):[];
+  if(!products.length)products=FALLBACK_PRODUCTS.map(mapProduct);
+ }catch(e){console.warn('Products API:',e);products=FALLBACK_PRODUCTS.map(mapProduct);toast('اتصال به فهرست آنلاین برقرار نشد؛ محصولات نمونه نمایش داده می‌شوند.')}
+ renderProducts();
 }
 function renderProducts(){
- const q=(document.getElementById('search').value||'').trim().toLowerCase();
- const shown=products.filter(p=>(currentCat==='همه'||p.cat===currentCat)&&(`${p.name} ${p.cat} ${p.desc}`.toLowerCase().includes(q)));
- document.getElementById('productTitle').textContent=currentCat==='همه'?'محصولات پیشنهادی':'دسته‌بندی '+currentCat;
- document.getElementById('resultCount').textContent=fmt(shown.length)+' کالا';
- document.getElementById('products').innerHTML=shown.length?shown.map(p=>`<article class="card"><div class="pic">${p.emoji||'📦'}${p.old>p.price?'<span class="badge">پیشنهاد ویژه</span>':''}</div><div class="info"><div class="name">${esc(p.name)}</div><div class="desc">${esc(p.desc||'')}</div>${p.old>p.price?`<div class="old">${fmt(p.old)} تومان</div>`:''}<div class="price">${fmt(p.price)} <small>تومان</small></div><button class="add" onclick="addCart(${p.id})">افزودن به سبد خرید</button></div></article>`).join(''):'<div class="empty">محصولی پیدا نشد. عبارت جست‌وجو یا دسته‌بندی را تغییر بده.</div>';
- updateCount();
+ const filtered=products.filter(p=>p.active!==false&&(selectedCategory==='همه'||p.category===selectedCategory)&&((p.name+' '+p.description+' '+p.category).toLowerCase().includes(searchTerm.toLowerCase())));
+ $('productCount').textContent=fmt(filtered.length)+' کالا';
+ if(!filtered.length){$('productGrid').innerHTML='<div class="empty">محصولی مطابق جست‌وجوی شما پیدا نشد.</div>';return}
+ $('productGrid').innerHTML=filtered.map(p=>`<article class="product"><span class="badge">پیشنهاد ویژه</span><div class="prod-art">${esc(p.emoji)}</div><h3>${esc(p.name)}</h3><p class="desc">${esc(p.description)}</p><div class="prices">${p.old_price&&p.old_price>p.price?`<div class="old">${money(p.old_price)}</div>`:''}<div class="price">${money(p.price)}</div></div><button class="add" data-add="${p.id}">افزودن به سبد خرید</button></article>`).join('');
+ document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>addToCart(Number(b.dataset.add))));
 }
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function filterCat(c){currentCat=c;renderProducts();window.scrollTo({top:0,behavior:'smooth'})}
-function addCart(id){cart[id]=(cart[id]||0)+1;save();updateCount();toast('به سبد خرید اضافه شد')}
-function updateCount(){document.getElementById('cartcount').textContent=fmt(Object.values(cart).reduce((a,b)=>a+b,0))}
-function openCart(){renderCart();document.getElementById('cartOverlay').classList.add('show')}
+function addToCart(id){const p=products.find(x=>x.id===id);if(!p){toast('این محصول در دسترس نیست.');return}const row=cart.find(x=>x.id===id);if(row)row.qty++;else cart.push({id:p.id,name:p.name,emoji:p.emoji,price:p.price,qty:1});renderCart();toast('به سبد خرید اضافه شد.')}
+function cartSum(){return cart.reduce((s,x)=>s+x.price*x.qty,0)}
 function renderCart(){
- const items=Object.entries(cart).filter(([id,q])=>q>0&&products.some(p=>p.id==id));
- document.getElementById('cartItems').innerHTML=items.length?items.map(([id,q])=>{let p=products.find(x=>x.id==id);return `<div class="cartrow"><div class="cartemoji">${p.emoji||'📦'}</div><div class="carttext"><b>${esc(p.name)}</b><br>${fmt(p.price)} تومان</div><div class="qty"><button onclick="changeQty(${id},-1)">−</button>${fmt(q)}<button onclick="changeQty(${id},1)">+</button></div></div>`}).join(''):'<div class="empty">سبد خرید خالی است.</div>';
- document.getElementById('cartTotal').textContent=fmt(cartSum())+' تومان';
+ $('cartCount').textContent=fmt(cart.reduce((s,x)=>s+x.qty,0));$('cartTotal').textContent=money(cartSum());$('checkoutTotal').textContent=money(cartSum());
+ $('cartItems').innerHTML=cart.length?cart.map(x=>`<div class="cart-line"><div><strong>${esc(x.emoji)} ${esc(x.name)}</strong><div class="muted">${money(x.price)} × ${fmt(x.qty)}</div></div><div class="qty"><button data-dec="${x.id}" aria-label="کم کردن">−</button><b>${fmt(x.qty)}</b><button data-inc="${x.id}" aria-label="زیاد کردن">+</button></div><div class="line-price">${money(x.price*x.qty)} <button class="danger" data-remove="${x.id}">حذف</button></div></div>`).join(''):'<div class="empty">سبد خرید خالی است. از محصولات، چیزی انتخاب کن.</div>';
+ document.querySelectorAll('[data-dec]').forEach(b=>b.onclick=()=>changeQty(Number(b.dataset.dec),-1));
+ document.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>changeQty(Number(b.dataset.inc),1));
+ document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart=cart.filter(x=>x.id!==Number(b.dataset.remove));renderCart()});
+ $('goCheckout').disabled=!cart.length;$('goCheckout').style.opacity=cart.length?'1':'.5';
 }
-function cartSum(){return Object.entries(cart).reduce((sum,[id,q])=>{let p=products.find(x=>x.id==id);return sum+(p?p.price*q:0)},0)}
-function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];save();renderCart()}
-function closeModal(id){document.getElementById(id).classList.remove('show')}
-function overlayClose(e,id){if(e.target.id===id)closeModal(id)}
-function checkout(){
- if(!Object.keys(cart).length){toast('سبد خرید خالی است');return}
- closeModal('cartOverlay');document.getElementById('checkoutBody').innerHTML=`
- <div class="hint">سفارش به‌صورت آنلاین ثبت می‌شود؛ اما درگاه بانکی هنوز متصل نیست. پرداخت فعلاً فقط پس از هماهنگی مستقیم با فروشگاه انجام می‌شود. تا زمان تأیید واقعی وجه، وضعیت پرداخت «در انتظار» می‌ماند.</div>
- <div class="field"><label>نام و نام خانوادگی</label><input id="buyerName" placeholder="نام کامل"></div>
- <div class="row2"><div class="field"><label>شماره تماس</label><input id="buyerPhone" inputmode="tel" placeholder="شماره تماس"></div><div class="field"><label>شهر</label><input id="buyerCity" placeholder="شهر محل تحویل"></div></div>
- <div class="field"><label>نشانی کامل تحویل</label><textarea id="buyerAddress" rows="2" placeholder="نشانی و کد پستی (در صورت نیاز)"></textarea></div>
- <div class="field"><label>توضیحات سفارش (اختیاری)</label><textarea id="buyerNote" rows="2" placeholder="رنگ، مدل یا توضیحات دیگر"></textarea></div>
- <div class="total"><span>مبلغ سفارش</span><span>${fmt(cartSum())} تومان</span></div>
- <button class="primary" onclick="submitOrder()">ثبت سفارش و دریافت راهنمای پرداخت</button>`;
- document.getElementById('checkoutOverlay').classList.add('show');
-}
-async function submitOrder(){
- const name=document.getElementById('buyerName').value.trim(),phone=document.getElementById('buyerPhone').value.trim(),city=document.getElementById('buyerCity').value.trim(),address=document.getElementById('buyerAddress').value.trim();
- if(!name||!phone||!city||!address){toast('لطفاً اطلاعات ضروری را کامل کن');return}
- const button=document.querySelector('#checkoutBody .primary');
- if(button){button.disabled=true;button.textContent='در حال ثبت سفارش...'}
- const orderItems=Object.entries(cart).map(([id,q])=>{let p=products.find(x=>x.id==id);return {name:p?.name||'کالا',price:p?.price||0,qty:q}});
- const total=cartSum();
- const note=document.getElementById('buyerNote').value.trim();
- const fullAddress=`شهر: ${city} | نشانی: ${address}${note?' | توضیحات: '+note:''}`;
- const payload={customer_name:name,customer_phone:phone,customer_address:fullAddress,items:orderItems,total_amount:total,payment_method:'card_to_card',payment_status:'pending',order_status:'new'};
+function changeQty(id,d){const x=cart.find(i=>i.id===id);if(!x)return;x.qty+=d;if(x.qty<=0)cart=cart.filter(i=>i.id!==id);renderCart()}
+$('openCart').onclick=()=>{renderCart();showOverlay('cartOverlay')};
+$('goCheckout').onclick=()=>{if(!cart.length)return;hideOverlay('cartOverlay');renderCart();showOverlay('checkoutOverlay')};
+$('searchForm').addEventListener('submit',e=>{e.preventDefault();searchTerm=$('searchInput').value.trim();renderProducts();$('products').scrollIntoView({behavior:'smooth'})});
+$('searchInput').addEventListener('input',()=>{searchTerm=$('searchInput').value.trim();renderProducts()});
+function selectCategory(cat){selectedCategory=cat;document.querySelectorAll('#categoryNav button').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));renderProducts();$('products').scrollIntoView({behavior:'smooth'})}
+document.querySelectorAll('#categoryNav [data-cat]').forEach(b=>b.onclick=()=>selectCategory(b.dataset.cat));
+document.querySelectorAll('[data-chip]').forEach(b=>b.onclick=()=>selectCategory(b.dataset.chip));
+$('checkoutForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!cart.length){toast('سبد خرید خالی است.');return}
+ const btn=e.submitter;btn.disabled=true;btn.textContent='در حال ثبت…';$('checkoutMessage').innerHTML='';
  try{
-   const response=await fetch(`${SUPABASE_URL}/rest/v1/orders`,{
-     method:'POST',
-     headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`,'Prefer':'return=minimal'},
-     body:JSON.stringify(payload)
-   });
-   if(!response.ok){let detail='';try{detail=await response.text()}catch(e){};throw new Error(detail||`HTTP ${response.status}`)}
-   const orderRef=Date.now();
-   const localOrder={id:orderRef,name,phone,city,address,note,items:orderItems,total,date:new Date().toLocaleString('fa-IR'),status:'ثبت‌شده در پایگاه داده آنلاین'};
-   let orders=JSON.parse(localStorage.getItem('digishop_orders')||'[]');orders.unshift(localOrder);localStorage.setItem('digishop_orders',JSON.stringify(orders));
-   cart={};save();updateCount();
-   document.getElementById('checkoutBody').innerHTML=`<div class="success"><b>سفارش با موفقیت در پایگاه داده آنلاین ثبت شد.</b><br>شماره پیگیری محلی: ${fmt(orderRef)}<br>مبلغ: ${fmt(total)} تومان<br><br>وضعیت پرداخت: در انتظار پرداخت و بررسی فروشنده.<br>ثبت سفارش به معنی پرداخت موفق نیست؛ فروشگاه پس از هماهنگی روش پرداخت را اعلام می‌کند. درگاه بانکی هنوز متصل نشده است.</div><button class="primary" style="margin-top:12px" onclick="closeModal('checkoutOverlay');renderProducts()">بازگشت به فروشگاه</button>`;
- }catch(err){
-   console.error('Order submit failed:',err);
-   toast('ثبت آنلاین ناموفق بود؛ تنظیمات جدول و دسترسی را بررسی کن');
-   const msg=String(err.message||'').replace(/[<>]/g,'');
-   document.getElementById('checkoutBody').insertAdjacentHTML('beforeend',`<div class="hint">سفارش در پایگاه داده ثبت نشد. لطفاً اتصال اینترنت و تنظیمات جدول orders را بررسی کن. جزئیات فنی: ${esc(msg.slice(0,220))}</div>`);
-   if(button){button.disabled=false;button.textContent='تلاش دوباره برای ثبت سفارش'}
- }
-}
-let adminAccessToken = null;
-let adminUserId = null;
-let onlineOrders = [];
-function openAdmin(){
- document.getElementById('adminBody').innerHTML=`<div class="hint">ورود امن مدیر با حساب Supabase. ایمیل و رمز حساب مدیر را وارد کن؛ رمز در این صفحه ذخیره نمی‌شود.</div>
- <div class="field"><label>ایمیل مدیر</label><input id="adminEmail" type="email" autocomplete="username" value="soheilamir827@gmail.com" placeholder="ایمیل مدیر"></div>
- <div class="field"><label>رمز عبور</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="رمز حساب Supabase"></div>
- <button class="primary" onclick="adminLogin()">ورود امن</button>`;
- document.getElementById('adminOverlay').classList.add('show');
-}
-async function adminLogin(){
- const email=document.getElementById('adminEmail').value.trim();
- const password=document.getElementById('adminPassword').value;
- if(!email||!password){toast('ایمیل و رمز عبور را وارد کن');return}
- const btn=document.querySelector('#adminBody .primary'); if(btn){btn.disabled=true;btn.textContent='در حال بررسی...'}
+  // Server-side price validation is required before real payments. This is a coordination-only order form.
+  const order={customer_name:$('customerName').value.trim(),customer_phone:$('customerPhone').value.trim(),customer_address:$('customerAddress').value.trim(),items:cart.map(x=>({id:x.id,name:x.name,emoji:x.emoji,price:x.price,quantity:x.qty})),total_amount:cartSum(),payment_method:$('paymentMethod').value==='coordination'?'coordination':$('paymentMethod').value,payment_status:'pending',order_status:'new'};
+  if(!order.customer_name||!order.customer_phone||!order.customer_address)throw new Error('لطفاً تمام اطلاعات ضروری را وارد کنید.');
+  await api('/orders',{method:'POST',body:order,prefer:'return=minimal'});
+  cart=[];renderCart();$('checkoutForm').reset();$('checkoutMessage').innerHTML='<div class="success">سفارش شما ثبت شد. وضعیت سفارش «در انتظار هماهنگی» است؛ این پیام تأیید پرداخت نیست.</div>';
+  toast('سفارش ثبت شد.');setTimeout(()=>hideOverlay('checkoutOverlay'),2300);
+ }catch(err){$('checkoutMessage').innerHTML='<div class="error">ثبت سفارش انجام نشد: '+esc(err.message)+'<br>لطفاً اتصال اینترنت یا تنظیمات جدول orders را بررسی کنید.</div>'}
+ finally{btn.disabled=false;btn.textContent='ثبت نهایی سفارش'}
+});
+$('openAdminLogin').onclick=()=>{ $('loginMessage').innerHTML='';showOverlay('loginOverlay') };
+async function authRequest(path,body){const res=await fetch(SUPABASE_URL+path,{method:'POST',headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});const t=await res.text();let d;try{d=t?JSON.parse(t):{}}catch{d={message:t}}if(!res.ok)throw new Error(d.msg||d.message||d.error_description||'ورود ناموفق بود.');return d}
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();const btn=e.submitter;btn.disabled=true;btn.textContent='در حال بررسی…';$('loginMessage').innerHTML='';
  try{
-  const r=await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify({email,password})});
-  const auth=await r.json();
-  if(!r.ok||!auth.access_token||!auth.user){throw new Error(auth.msg||auth.message||auth.error_description||'ایمیل یا رمز عبور درست نیست')}
-  adminAccessToken=auth.access_token; adminUserId=auth.user.id;
-  const check=await fetch(`${SUPABASE_URL}/rest/v1/shop_admins?select=user_id&user_id=eq.${encodeURIComponent(adminUserId)}`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}});
-  const admins=await check.json();
-  if(!check.ok||!Array.isArray(admins)||!admins.some(x=>x.user_id===adminUserId)){adminAccessToken=null;adminUserId=null;throw new Error('این حساب در فهرست مدیران فروشگاه ثبت نشده است')}
-  await renderAdmin();
- }catch(err){toast(String(err.message||'ورود ناموفق بود').slice(0,150));if(btn){btn.disabled=false;btn.textContent='ورود امن'}}
-}
-async function renderAdmin(){
- if(!adminAccessToken){openAdmin();return}
- document.getElementById('adminBody').innerHTML='<div class="hint">در حال دریافت سفارش‌ها و محصولات آنلاین...</div>';
+  const auth=await authRequest('/auth/v1/token?grant_type=password',{email:$('adminEmail').value.trim(),password:$('adminPassword').value});
+  if(!auth.access_token||!auth.user?.id)throw new Error('پاسخ ورود معتبر نیست.');
+  const admins=await api('/shop_admins?select=user_id&user_id=eq.'+encodeURIComponent(auth.user.id),{token:auth.access_token});
+  if(!Array.isArray(admins)||!admins.length)throw new Error('این حساب در فهرست مدیران فروشگاه نیست.');
+  adminSession=auth.access_token;adminRefreshToken=auth.refresh_token||null;
+  $('loginForm').reset();hideOverlay('loginOverlay');$('adminWelcome').textContent='وارد شده‌اید: '+(auth.user.email||'مدیر');showOverlay('adminOverlay');await loadAdminOrders();await loadAdminProducts();toast('ورود مدیریت موفق بود.');
+ }catch(err){$('loginMessage').innerHTML='<div class="error">'+esc(err.message)+'</div>'}
+ finally{btn.disabled=false;btn.textContent='ورود امن'}
+});
+function adminMsg(msg,type='success'){$('adminMessage').innerHTML=`<div class="${type}">${esc(msg)}</div>`;setTimeout(()=>{$('adminMessage').innerHTML=''},4500)}
+function statusLabel(s){return ({new:'جدید',pending:'در انتظار بررسی',confirmed:'تأیید شده',processing:'در حال آماده‌سازی',shipped:'ارسال شده',delivered:'تحویل شده',cancelled:'لغو شده',paid:'پرداخت‌شده',unpaid:'پرداخت‌نشده'})[s]||s||'—'}
+async function loadAdminOrders(){
+ $('ordersTable').innerHTML='<div class="loading">در حال بارگذاری سفارش‌ها…</div>';
  try{
-  const [ordersResponse,productsResponse]=await Promise.all([
-   fetch(`${SUPABASE_URL}/rest/v1/orders?select=*&order=created_at.desc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}}),
-   fetch(`${SUPABASE_URL}/rest/v1/products?select=*&order=id.asc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}})
-  ]);
-  const data=await ordersResponse.json();
-  if(!ordersResponse.ok)throw new Error(data.message||data.details||'دریافت سفارش‌ها ناموفق بود');
-  const pData=await productsResponse.json();
-  if(!productsResponse.ok)throw new Error(pData.message||pData.details||'دریافت محصولات آنلاین ناموفق بود. جدول products یا دسترسی مدیر را بررسی کن.');
-  onlineOrders=Array.isArray(data)?data:[];
-  const adminProducts=Array.isArray(pData)?pData:[];
-  document.getElementById('adminBody').innerHTML=`<div class="success"><b>ورود مدیر تأیید شد.</b><br>سفارش‌ها و کاتالوگ محصولات از پایگاه داده آنلاین دریافت می‌شوند.</div>
-  <div class="admin-tools"><button class="secondary" onclick="renderAdmin()">🔄 تازه‌سازی</button><button class="secondary" onclick="loadOnlineProducts(true)">تازه‌سازی فروشگاه</button><button class="secondary" onclick="adminLogout()">خروج از حساب مدیر</button></div>
-  <h3>سفارش‌های آنلاین (${fmt(onlineOrders.length)})</h3><div class="adminlist">${onlineOrders.length?onlineOrders.map(o=>{const items=Array.isArray(o.items)?o.items.map(i=>`${esc(i.name||'کالا')} × ${fmt(i.qty||1)} (${fmt(i.price||0)} تومان)`).join('، '):esc(JSON.stringify(o.items||[]));return `<div class="adminitem"><b>سفارش #${esc(o.id)}</b> <span class="status-pill">${esc(o.payment_status==='paid'?'پرداخت‌شده':'در انتظار پرداخت')}</span><br>تاریخ: ${esc(o.created_at?new Date(o.created_at).toLocaleString('fa-IR'):'—')}<br>نام مشتری: ${esc(o.customer_name)}<br>تلفن: ${esc(o.customer_phone)}<br>نشانی: ${esc(o.customer_address)}<br>مبلغ: <b>${fmt(o.total_amount)} تومان</b><br>روش پرداخت: کارت‌به‌کارت | وضعیت پرداخت: ${esc(o.payment_status)}<br>اقلام: ${items}<div class="field"><label>وضعیت سفارش</label><select id="orderStatus_${esc(o.id)}"><option value="new" ${o.order_status==='new'?'selected':''}>جدید</option><option value="processing" ${o.order_status==='processing'?'selected':''}>در حال آماده‌سازی</option><option value="shipped" ${o.order_status==='shipped'?'selected':''}>ارسال شده</option><option value="completed" ${o.order_status==='completed'?'selected':''}>تکمیل شده</option><option value="cancelled" ${o.order_status==='cancelled'?'selected':''}>لغو شده</option></select></div><button class="primary" onclick="updateOrderStatus('${esc(o.id)}')">ذخیره وضعیت سفارش</button></div>`}).join(''):'هنوز سفارشی در پایگاه داده آنلاین وجود ندارد.'}</div>
-  <hr style="margin:20px 0;border:0;border-top:1px solid #ddd"><h3>مدیریت محصولات آنلاین (${fmt(adminProducts.length)})</h3><div class="hint">محصولات این بخش در پایگاه داده ذخیره می‌شوند و پس از تازه‌سازی برای همه بازدیدکنندگان نمایش داده خواهند شد. حذف محصول روی سفارش‌های قبلی اثری ندارد.</div>
-  <h3>افزودن محصول جدید</h3><div class="field"><label>نام محصول</label><input id="newName" placeholder="مثلاً کیف دستی"></div>
-  <div class="row2"><div class="field"><label>قیمت (تومان)</label><input id="newPrice" type="number" min="1" placeholder="500000"></div><div class="field"><label>ایموجی محصول</label><input id="newEmoji" placeholder="👜"></div></div>
-  <div class="row2"><div class="field"><label>دسته‌بندی</label><select id="newCat"><option>دیجیتال</option><option>خانه</option><option>پوشاک</option><option>زیبایی</option><option>ورزش</option><option>سایر</option></select></div><div class="field"><label>قیمت قبلی (اختیاری)</label><input id="newOld" type="number" min="0" placeholder="0"></div></div>
-  <div class="field"><label>توضیح کوتاه</label><input id="newDesc" placeholder="توضیح محصول"></div><button class="primary" onclick="addProduct()">افزودن به فروشگاه آنلاین</button>
-  <div class="adminlist" style="margin-top:12px">${adminProducts.map(p=>`<div class="adminitem"><b>${esc(p.emoji||'📦')} ${esc(p.name)}</b><br>قیمت: ${fmt(p.price)} تومان ${p.active?'':'| غیرفعال'}<br><button class="smallbtn" onclick="editProduct(${Number(p.id)})">ویرایش نام و قیمت</button> <button style="background:#fee2e2;color:#991b1b;border-radius:6px;padding:7px 9px;margin-top:6px" onclick="deleteProduct(${Number(p.id)})">حذف آنلاین</button></div>`).join('')||'هنوز محصولی در جدول آنلاین نیست.'}</div>
-  <hr style="margin:20px 0;border:0;border-top:1px solid #ddd"><h3>پرداخت آنلاین بانکی</h3><div class="hint">برای پرداخت خودکار واقعی، باید حساب پذیرندگی در یک درگاه معتبر داشته باشی و یک بک‌اند امن برای ساخت تراکنش و تأیید پرداخت راه‌اندازی شود. اطلاعات محرمانه درگاه را هرگز داخل این فایل HTML یا گیت‌هاب قرار نده. تا آن زمان سفارش‌ها با وضعیت pending ثبت می‌شوند.</div>`;
-  if(adminProducts.length){products=adminProducts.filter(p=>p.active).map(mapProductRow);onlineProductsReady=true;renderProducts();}
- }catch(err){document.getElementById('adminBody').innerHTML=`<div class="hint">خطا در دریافت اطلاعات آنلاین: ${esc(err.message||'خطای نامشخص')}<br>اگر جدول products هنوز ساخته نشده، ابتدا SQL آماده‌شده را در Supabase اجرا کن.</div><button class="secondary" onclick="renderAdmin()">تلاش دوباره</button><button class="secondary" onclick="adminLogout()">خروج</button>`}
+  const rows=await api('/orders?select=*&order=created_at.desc&limit=200',{token:adminSession});
+  if(!rows.length){$('ordersTable').innerHTML='<div class="empty">هنوز سفارشی ثبت نشده است.</div>';return}
+  $('ordersTable').innerHTML='<table><thead><tr><th>شماره</th><th>مشتری</th><th>اقلام</th><th>مبلغ</th><th>پرداخت</th><th>وضعیت سفارش</th><th>تاریخ</th></tr></thead><tbody>'+rows.map(o=>{
+   const items=Array.isArray(o.items)?o.items.map(i=>esc(i.name)+' × '+fmt(i.quantity??i.qty??1)).join('<br>'):esc(JSON.stringify(o.items||{}));
+   const created=o.created_at?new Date(o.created_at).toLocaleString('fa-IR'):'—';
+   const statuses=['new','pending','confirmed','processing','shipped','delivered','cancelled'];
+   return `<tr><td>#${esc(o.id)}</td><td><strong>${esc(o.customer_name)}</strong><br>${esc(o.customer_phone)}<br><span class="muted">${esc(o.customer_address)}</span></td><td>${items}</td><td>${money(o.total_amount)}</td><td><span class="status ${o.payment_status==='paid'?'paid':''}">${esc(statusLabel(o.payment_status))}</span></td><td><select data-order-status="${esc(o.id)}">${statuses.map(s=>`<option value="${s}" ${o.order_status===s?'selected':''}>${statusLabel(s)}</option>`).join('')}</select><div class="muted" style="margin-top:4px">${esc(statusLabel(o.order_status))}</div></td><td>${esc(created)}</td></tr>`
+  }).join('')+'</tbody></table>';
+  document.querySelectorAll('[data-order-status]').forEach(sel=>sel.addEventListener('change',async()=>{
+   sel.disabled=true;try{await api('/orders?id=eq.'+encodeURIComponent(sel.dataset.orderStatus),{method:'PATCH',body:{order_status:sel.value},token:adminSession,prefer:'return=minimal'});adminMsg('وضعیت سفارش به‌روزرسانی شد.');await loadAdminOrders()}catch(err){adminMsg('تغییر وضعیت ناموفق بود: '+err.message,'error');sel.disabled=false}
+  }));
+ }catch(err){$('ordersTable').innerHTML='<div class="error">بارگذاری سفارش‌ها ناموفق بود: '+esc(err.message)+'<br>بررسی کنید که حساب مدیر در shop_admins ثبت شده و policyهای orders فعال باشند.</div>'}
 }
-async function updateOrderStatus(id){
- if(!adminAccessToken){toast('ابتدا وارد حساب مدیر شو');return}
- const select=document.getElementById('orderStatus_'+id); if(!select)return;
- const status=select.value;
+async function loadAdminProducts(){
+ $('adminProductsList').innerHTML='<div class="loading">در حال بارگذاری محصولات…</div>';
  try{
-  const r=await fetch(`${SUPABASE_URL}/rest/v1/orders?id=eq.${encodeURIComponent(id)}`,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=minimal'},body:JSON.stringify({order_status:status})});
-  if(!r.ok){let msg='';try{msg=await r.text()}catch(e){}throw new Error(msg||'ذخیره وضعیت ناموفق بود')}
-  toast('وضعیت سفارش ذخیره شد');
- }catch(err){toast('خطا در ذخیره وضعیت سفارش');console.error(err)}
+  const data=await api('/products?select=*&order=id.asc&limit=500',{token:adminSession});
+  const rows=data.map(mapProduct);
+  if(!rows.length){$('adminProductsList').innerHTML='<div class="empty">محصولی وجود ندارد.</div>';return}
+  $('adminProductsList').innerHTML=rows.map(p=>`<div class="admin-product"><span class="emoji">${esc(p.emoji)}</span><div class="info"><strong>${esc(p.name)} ${p.active?'':'(غیرفعال)'}</strong><small>${esc(p.category)} · ${money(p.price)}${p.old_price?' · قیمت قبلی '+money(p.old_price):''}</small></div><div class="admin-actions"><button class="secondary" data-edit-product="${p.id}">ویرایش</button><button class="${p.active?'danger':'secondary'}" data-toggle-product="${p.id}" data-active="${p.active}">${p.active?'غیرفعال‌کردن':'فعال‌کردن'}</button><button class="danger" data-delete-product="${p.id}">حذف</button></div></div>`).join('');
+  document.querySelectorAll('[data-edit-product]').forEach(b=>b.onclick=()=>startEditProduct(Number(b.dataset.editProduct)));
+  document.querySelectorAll('[data-toggle-product]').forEach(b=>b.onclick=()=>toggleProduct(Number(b.dataset.toggleProduct),b.dataset.active==='true'));
+  document.querySelectorAll('[data-delete-product]').forEach(b=>b.onclick=()=>deleteProduct(Number(b.dataset.deleteProduct)));
+ }catch(err){$('adminProductsList').innerHTML='<div class="error">بارگذاری محصولات ناموفق بود: '+esc(err.message)+'</div>'}
 }
-function adminLogout(){adminAccessToken=null;adminUserId=null;onlineOrders=[];openAdmin();toast('از حساب مدیر خارج شدی')}
-async function addProduct(){
- if(!adminAccessToken){toast('ابتدا وارد حساب مدیر شو');return}
- const name=document.getElementById('newName').value.trim(),price=Number(document.getElementById('newPrice').value);
- if(!name||!Number.isFinite(price)||price<=0){toast('نام و قیمت معتبر وارد کن');return}
- const payload={name,category:document.getElementById('newCat').value,emoji:document.getElementById('newEmoji').value.trim()||'📦',price,old_price:Number(document.getElementById('newOld').value)||0,description:document.getElementById('newDesc').value.trim()||'محصول جدید',active:true};
- try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=representation'},body:JSON.stringify(payload)});if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||'افزودن محصول ناموفق بود')};toast('محصول به فروشگاه آنلاین اضافه شد');await renderAdmin();await loadOnlineProducts();}
- catch(e){console.error(e);toast('افزودن آنلاین ناموفق بود؛ جدول و سیاست‌های products را بررسی کن')}
+function switchTab(id){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));['ordersTab','productsTab','addProductTab'].forEach(s=>$(s).classList.toggle('hidden',s!==id))}
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+$('refreshOrders').onclick=loadAdminOrders;$('refreshProducts').onclick=loadAdminProducts;
+function resetProductForm(){$('productForm').reset();$('editProductId').value='';$('productEmoji').value='🛍️';$('saveProductBtn').textContent='ذخیره محصول'}
+function startEditProduct(id){
+ api('/products?select=*&id=eq.'+encodeURIComponent(id),{token:adminSession}).then(rows=>{
+  const p=rows[0];if(!p)throw new Error('محصول پیدا نشد');
+  $('editProductId').value=p.id;$('productName').value=p.name||'';$('productCategory').value=p.category||'سایر کالاها';$('productEmoji').value=p.emoji||'🛍️';$('productPrice').value=p.price??0;$('productOldPrice').value=p.old_price??'';$('productActive').value=String(p.active!==false);$('productDescription').value=p.description||'';$('saveProductBtn').textContent='ذخیره تغییرات';switchTab('addProductTab');$('productName').focus();
+ }).catch(err=>adminMsg('دریافت محصول ناموفق بود: '+err.message,'error'));
 }
-async function editProduct(id){
- if(!adminAccessToken)return;const p=products.find(x=>Number(x.id)===Number(id));
- // The product may not be in the currently visible list; query it from the admin list using the prompt values where possible.
- const name=prompt('نام جدید محصول را وارد کن:');if(name===null)return;
- const priceText=prompt('قیمت جدید به تومان را وارد کن:');if(priceText===null)return;
- const price=Number(priceText);if(!name.trim()||!Number.isFinite(price)||price<=0){toast('نام یا قیمت معتبر نیست');return}
- const oldText=prompt('قیمت قبلی (برای تخفیف؛ اگر ندارد 0):','0');if(oldText===null)return;
- try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products?id=eq.${encodeURIComponent(id)}`,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=minimal'},body:JSON.stringify({name:name.trim(),price,old_price:Math.max(0,Number(oldText)||0)})});if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||'ویرایش ناموفق بود')}toast('محصول آنلاین ویرایش شد');await renderAdmin();await loadOnlineProducts();}
- catch(e){console.error(e);toast('ویرایش آنلاین ناموفق بود')}
+$('cancelEditBtn').onclick=resetProductForm;
+$('productForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!adminSession){adminMsg('ابتدا وارد مدیریت شوید.','error');return}
+ const btn=$('saveProductBtn');btn.disabled=true;
+ const body={name:$('productName').value.trim(),category:$('productCategory').value,emoji:$('productEmoji').value.trim()||'🛍️',price:Number($('productPrice').value),old_price:$('productOldPrice').value===''?null:Number($('productOldPrice').value),description:$('productDescription').value.trim(),active:$('productActive').value==='true'};
+ try{
+  if(!body.name||!Number.isFinite(body.price)||body.price<0)throw new Error('نام و قیمت معتبر وارد کنید.');
+  const id=$('editProductId').value;
+  if(id)await api('/products?id=eq.'+encodeURIComponent(id),{method:'PATCH',body,token:adminSession,prefer:'return=minimal'});
+  else await api('/products',{method:'POST',body,token:adminSession,prefer:'return=minimal'});
+  resetProductForm();await loadAdminProducts();await loadProducts();switchTab('productsTab');adminMsg(id?'محصول ویرایش شد.':'محصول جدید اضافه شد.');toast('تغییرات محصول ذخیره شد.');
+ }catch(err){adminMsg('ذخیره محصول ناموفق بود: '+err.message,'error')}
+ finally{btn.disabled=false}
+});
+async function toggleProduct(id,active){
+ try{await api('/products?id=eq.'+encodeURIComponent(id),{method:'PATCH',body:{active:!active},token:adminSession,prefer:'return=minimal'});await loadAdminProducts();await loadProducts();adminMsg('وضعیت نمایش محصول تغییر کرد.')}
+ catch(err){adminMsg('تغییر وضعیت ناموفق بود: '+err.message,'error')}
 }
-async function deleteProduct(id){if(!adminAccessToken){toast('ابتدا وارد حساب مدیر شو');return}if(!confirm('این محصول از فروشگاه آنلاین حذف شود؟'))return;try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products?id=eq.${encodeURIComponent(id)}`,{method:'DELETE',headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=minimal'}});if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||'حذف ناموفق بود')}delete cart[id];save();toast('محصول از فروشگاه آنلاین حذف شد');await renderAdmin();await loadOnlineProducts();}catch(e){console.error(e);toast('حذف آنلاین ناموفق بود؛ دسترسی مدیر را بررسی کن')}}
-function deleteOrder(id){if(!confirm('این سفارش از همین مرورگر حذف شود؟'))return;let o=JSON.parse(localStorage.getItem('digishop_orders')||'[]').filter(x=>x.id!==id);localStorage.setItem('digishop_orders',JSON.stringify(o));renderAdmin()}
-function toast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#20242c;color:white;padding:12px 18px;border-radius:10px;z-index:30;font-size:13px;box-shadow:0 5px 20px #0002';document.body.appendChild(t)}t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2200)}
-renderProducts();
-loadOnlineProducts();
+async function deleteProduct(id){
+ const p=products.find(x=>x.id===id);
+ if(!confirm('آیا از حذف این محصول مطمئن هستید؟ این کار قابل بازگشت نیست.'))return;
+ try{await api('/products?id=eq.'+encodeURIComponent(id),{method:'DELETE',token:adminSession,prefer:'return=minimal'});await loadAdminProducts();await loadProducts();adminMsg('محصول حذف شد.')}
+ catch(err){adminMsg('حذف محصول ناموفق بود: '+err.message,'error')}
+}
+$('closeAdmin').onclick=()=>hideOverlay('adminOverlay');
+$('logoutAdmin').onclick=async()=>{
+ if(adminSession&&adminRefreshToken){try{await fetch(SUPABASE_URL+'/auth/v1/logout',{method:'POST',headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':'Bearer '+adminSession}})}catch{}}
+ adminSession=null;adminRefreshToken=null;hideOverlay('adminOverlay');$('adminMessage').innerHTML='';toast('از پنل مدیریت خارج شدید.')
+};
+renderCart();loadProducts();
 </script>
 </body>
-   </html>
+                                                                                                                                                          </html>
