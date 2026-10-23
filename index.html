@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#e6123d">
-<title>دیجی شاپ | خرید آنلاین</title>
+<title>دیجی شاپ | فروشگاه اینترنتی</title>
 <style>
 :root{--red:#e6123d;--red2:#c90d32;--ink:#232933;--muted:#777f8c;--line:#e9ebef;--bg:#f5f6f8;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}a{color:inherit;text-decoration:none}
@@ -12,6 +12,12 @@
 .overlay{position:fixed;inset:0;background:#10152288;z-index:10;display:none;align-items:center;justify-content:center;padding:14px}.overlay.show{display:flex}.modal{background:#fff;border-radius:15px;width:min(600px,100%);max-height:90vh;overflow:auto;padding:20px}.modalhead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:15px}.modalhead h2{font-size:19px;margin:0}.x{background:#f1f2f5;border-radius:8px;padding:7px 11px}.cartrow{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.cartemoji{font-size:32px}.carttext{flex:1;font-size:13px;line-height:1.8}.qty{display:flex;gap:9px;align-items:center}.qty button{background:#f2f3f5;border-radius:6px;padding:5px 9px}.total{display:flex;justify-content:space-between;font-weight:bold;padding:17px 0}.primary{background:var(--red);color:#fff;padding:12px 16px;border-radius:9px;width:100%}.secondary{background:#f0f1f4;padding:11px 14px;border-radius:8px}.field{display:flex;flex-direction:column;gap:7px;margin:12px 0}.field label{font-size:13px;color:#555}.field input,.field select,.field textarea{border:1px solid #dfe2e8;border-radius:8px;padding:11px;outline-color:var(--red);width:100%;background:white}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{font-size:12px;line-height:1.9;color:#666;background:#fff8e8;padding:12px;border-radius:8px;margin:10px 0}.success{background:#effaf2;color:#166534;padding:13px;border-radius:8px;line-height:1.9;font-size:13px}.adminlist{font-size:12px;line-height:1.9}.adminitem{border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0}.adminitem button{background:#fee2e2;color:#991b1b;border-radius:6px;padding:6px 9px;margin-top:6px}.smallbtn{border:1px solid var(--line);background:white;border-radius:8px;padding:8px 10px}
 @media(max-width:750px){.headin{flex-wrap:wrap;gap:9px}.logo{font-size:21px}.search{order:3;flex-basis:100%}.headbtn{margin-right:auto}.nav{gap:16px}.hero{min-height:145px;padding:20px}.hero h1{font-size:21px}.hero .bubble{font-size:48px}.quick{grid-template-columns:repeat(5,minmax(66px,1fr));overflow:auto}.quick button{font-size:11px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.pic{height:125px;font-size:52px}.info{padding:10px}.name{font-size:12px}.sectionhead h2{font-size:16px}}
 @media(min-width:751px) and (max-width:1000px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* DigiShop polished admin/catalog additions */
+.card{box-shadow:0 3px 14px #17203308}.pic{background:linear-gradient(145deg,#fff7f8,#f4f5f8)}
+.hero{box-shadow:0 12px 28px #b90b3120}.add,.primary{font-weight:700;transition:background .15s,transform .15s}.add:active,.primary:active{transform:scale(.99)}
+.adminitem{background:#fff;padding:13px}.adminitem .field{margin:9px 0}.admin-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.status-pill{display:inline-block;background:#fff7ed;color:#9a3412;border-radius:20px;padding:4px 9px;font-size:11px}
+@media(max-width:480px){.modal{padding:14px}.hero{border-radius:13px}.pic{height:115px}.add{font-size:12px;padding:9px 5px}}
 </style>
 </head>
 <body>
@@ -84,11 +90,19 @@ const defaultProducts=[
 {id:17,name:'کتاب داستان',cat:'سایر',emoji:'📚',price:220000,old:0,desc:'برای اوقات فراغت'},
 {id:18,name:'جعبه ابزار کوچک',cat:'سایر',emoji:'🧰',price:480000,old:0,desc:'ابزارهای کاربردی'}
 ];
-let products=JSON.parse(localStorage.getItem('digishop_products')||'null')||defaultProducts;
+let products=defaultProducts.slice();
 let cart=JSON.parse(localStorage.getItem('digishop_cart')||'{}');
 let currentCat='همه';
+let onlineProductsReady=false;
 const fmt=n=>Number(n||0).toLocaleString('fa-IR');
-function save(){localStorage.setItem('digishop_products',JSON.stringify(products));localStorage.setItem('digishop_cart',JSON.stringify(cart))}
+function save(){localStorage.setItem('digishop_cart',JSON.stringify(cart))}
+function mapProductRow(p){return {id:Number(p.id),name:p.name,cat:p.category||'سایر',emoji:p.emoji||'📦',price:Number(p.price||0),old:Number(p.old_price||0),desc:p.description||''}}
+async function loadOnlineProducts(showError=false){
+ try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products?select=*&active=eq.true&order=id.asc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`}});
+ if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||`HTTP ${r.status}`)}
+ const rows=await r.json();if(Array.isArray(rows)&&rows.length){products=rows.map(mapProductRow);onlineProductsReady=true;renderProducts();if(showError)toast('محصولات آنلاین به‌روزرسانی شدند')}else{onlineProductsReady=true;products=defaultProducts.slice();renderProducts();if(showError)toast('فهرست آنلاین خالی است؛ از پنل مدیر محصولات اولیه را منتشر کن')}
+ }catch(e){console.error('Online products unavailable',e);if(showError)toast('دریافت محصولات آنلاین ناموفق بود؛ تنظیمات جدول products را بررسی کن');renderProducts()}
+}
 function renderProducts(){
  const q=(document.getElementById('search').value||'').trim().toLowerCase();
  const shown=products.filter(p=>(currentCat==='همه'||p.cat===currentCat)&&(`${p.name} ${p.cat} ${p.desc}`.toLowerCase().includes(q)));
@@ -114,7 +128,7 @@ function overlayClose(e,id){if(e.target.id===id)closeModal(id)}
 function checkout(){
  if(!Object.keys(cart).length){toast('سبد خرید خالی است');return}
  closeModal('cartOverlay');document.getElementById('checkoutBody').innerHTML=`
- <div class="hint">این نسخه برای شروع و آزمایش ساخته شده است. قبل از انتقال پول، شماره کارت و هویت فروشنده را خودت بررسی کن. هیچ پرداختی به‌صورت خودکار انجام نمی‌شود.</div>
+ <div class="hint">سفارش به‌صورت آنلاین ثبت می‌شود؛ اما درگاه بانکی هنوز متصل نیست. پرداخت فعلاً فقط پس از هماهنگی مستقیم با فروشگاه انجام می‌شود. تا زمان تأیید واقعی وجه، وضعیت پرداخت «در انتظار» می‌ماند.</div>
  <div class="field"><label>نام و نام خانوادگی</label><input id="buyerName" placeholder="نام کامل"></div>
  <div class="row2"><div class="field"><label>شماره تماس</label><input id="buyerPhone" inputmode="tel" placeholder="شماره تماس"></div><div class="field"><label>شهر</label><input id="buyerCity" placeholder="شهر محل تحویل"></div></div>
  <div class="field"><label>نشانی کامل تحویل</label><textarea id="buyerAddress" rows="2" placeholder="نشانی و کد پستی (در صورت نیاز)"></textarea></div>
@@ -144,7 +158,7 @@ async function submitOrder(){
    const localOrder={id:orderRef,name,phone,city,address,note,items:orderItems,total,date:new Date().toLocaleString('fa-IR'),status:'ثبت‌شده در پایگاه داده آنلاین'};
    let orders=JSON.parse(localStorage.getItem('digishop_orders')||'[]');orders.unshift(localOrder);localStorage.setItem('digishop_orders',JSON.stringify(orders));
    cart={};save();updateCount();
-   document.getElementById('checkoutBody').innerHTML=`<div class="success"><b>سفارش با موفقیت در پایگاه داده آنلاین ثبت شد.</b><br>شماره پیگیری محلی: ${fmt(orderRef)}<br>مبلغ: ${fmt(total)} تومان<br><br>وضعیت پرداخت: در انتظار پرداخت و بررسی فروشنده.<br>ثبت سفارش به معنی پرداخت موفق نیست؛ قبل از انتقال پول، اطلاعات فروشنده را بررسی کن.<br><br><b>توجه:</b> این نسخه هنوز درگاه پرداخت ندارد و پنل مدیریت فعلی امن/آنلاین نیست.</div><button class="primary" style="margin-top:12px" onclick="closeModal('checkoutOverlay');renderProducts()">بازگشت به فروشگاه</button>`;
+   document.getElementById('checkoutBody').innerHTML=`<div class="success"><b>سفارش با موفقیت در پایگاه داده آنلاین ثبت شد.</b><br>شماره پیگیری محلی: ${fmt(orderRef)}<br>مبلغ: ${fmt(total)} تومان<br><br>وضعیت پرداخت: در انتظار پرداخت و بررسی فروشنده.<br>ثبت سفارش به معنی پرداخت موفق نیست؛ فروشگاه پس از هماهنگی روش پرداخت را اعلام می‌کند. درگاه بانکی هنوز متصل نشده است.</div><button class="primary" style="margin-top:12px" onclick="closeModal('checkoutOverlay');renderProducts()">بازگشت به فروشگاه</button>`;
  }catch(err){
    console.error('Order submit failed:',err);
    toast('ثبت آنلاین ناموفق بود؛ تنظیمات جدول و دسترسی را بررسی کن');
@@ -181,22 +195,30 @@ async function adminLogin(){
 }
 async function renderAdmin(){
  if(!adminAccessToken){openAdmin();return}
- document.getElementById('adminBody').innerHTML='<div class="hint">در حال دریافت سفارش‌های آنلاین...</div>';
+ document.getElementById('adminBody').innerHTML='<div class="hint">در حال دریافت سفارش‌ها و محصولات آنلاین...</div>';
  try{
-  const r=await fetch(`${SUPABASE_URL}/rest/v1/orders?select=*&order=created_at.desc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}});
-  const data=await r.json();
-  if(!r.ok)throw new Error(data.message||data.details||'دریافت سفارش‌ها ناموفق بود');
+  const [ordersResponse,productsResponse]=await Promise.all([
+   fetch(`${SUPABASE_URL}/rest/v1/orders?select=*&order=created_at.desc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}}),
+   fetch(`${SUPABASE_URL}/rest/v1/products?select=*&order=id.asc`,{headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`}})
+  ]);
+  const data=await ordersResponse.json();
+  if(!ordersResponse.ok)throw new Error(data.message||data.details||'دریافت سفارش‌ها ناموفق بود');
+  const pData=await productsResponse.json();
+  if(!productsResponse.ok)throw new Error(pData.message||pData.details||'دریافت محصولات آنلاین ناموفق بود. جدول products یا دسترسی مدیر را بررسی کن.');
   onlineOrders=Array.isArray(data)?data:[];
-  document.getElementById('adminBody').innerHTML=`<div class="success">ورود مدیر تأیید شد. سفارش‌های نمایش‌داده‌شده از پایگاه داده آنلاین هستند.</div>
-  <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap"><button class="secondary" onclick="renderAdmin()">تازه‌سازی سفارش‌ها</button><button class="secondary" onclick="adminLogout()">خروج از حساب مدیر</button></div>
-  <h3>سفارش‌های آنلاین (${fmt(onlineOrders.length)})</h3><div class="adminlist">${onlineOrders.length?onlineOrders.map(o=>{const items=Array.isArray(o.items)?o.items.map(i=>`${esc(i.name||'کالا')} × ${fmt(i.qty||1)} (${fmt(i.price||0)} تومان)`).join('، '):esc(JSON.stringify(o.items||[]));return `<div class="adminitem"><b>سفارش #${esc(o.id)}</b><br>تاریخ: ${esc(o.created_at?new Date(o.created_at).toLocaleString('fa-IR'):'—')}<br>نام مشتری: ${esc(o.customer_name)}<br>تلفن: ${esc(o.customer_phone)}<br>نشانی: ${esc(o.customer_address)}<br>مبلغ: ${fmt(o.total_amount)} تومان<br>روش پرداخت: کارت‌به‌کارت | وضعیت پرداخت: ${esc(o.payment_status)}<br>اقلام: ${items}<div class="field"><label>وضعیت سفارش</label><select id="orderStatus_${esc(o.id)}"><option value="new" ${o.order_status==='new'?'selected':''}>جدید</option><option value="processing" ${o.order_status==='processing'?'selected':''}>در حال آماده‌سازی</option><option value="shipped" ${o.order_status==='shipped'?'selected':''}>ارسال شده</option><option value="completed" ${o.order_status==='completed'?'selected':''}>تکمیل شده</option><option value="cancelled" ${o.order_status==='cancelled'?'selected':''}>لغو شده</option></select></div><button class="primary" onclick="updateOrderStatus('${esc(o.id)}')">ذخیره وضعیت سفارش</button></div>`}).join(''):'هنوز سفارشی در پایگاه داده آنلاین وجود ندارد.'}</div>
-  <hr style="margin:20px 0;border:0;border-top:1px solid #ddd"><h3>محصولات این مرورگر</h3><div class="hint">مدیریت محصولات در نسخه فعلی فقط روی همین مرورگر ذخیره می‌شود؛ تغییرات محصول هنوز بین همه کاربران همگام نیست.</div>
+  const adminProducts=Array.isArray(pData)?pData:[];
+  document.getElementById('adminBody').innerHTML=`<div class="success"><b>ورود مدیر تأیید شد.</b><br>سفارش‌ها و کاتالوگ محصولات از پایگاه داده آنلاین دریافت می‌شوند.</div>
+  <div class="admin-tools"><button class="secondary" onclick="renderAdmin()">🔄 تازه‌سازی</button><button class="secondary" onclick="loadOnlineProducts(true)">تازه‌سازی فروشگاه</button><button class="secondary" onclick="adminLogout()">خروج از حساب مدیر</button></div>
+  <h3>سفارش‌های آنلاین (${fmt(onlineOrders.length)})</h3><div class="adminlist">${onlineOrders.length?onlineOrders.map(o=>{const items=Array.isArray(o.items)?o.items.map(i=>`${esc(i.name||'کالا')} × ${fmt(i.qty||1)} (${fmt(i.price||0)} تومان)`).join('، '):esc(JSON.stringify(o.items||[]));return `<div class="adminitem"><b>سفارش #${esc(o.id)}</b> <span class="status-pill">${esc(o.payment_status==='paid'?'پرداخت‌شده':'در انتظار پرداخت')}</span><br>تاریخ: ${esc(o.created_at?new Date(o.created_at).toLocaleString('fa-IR'):'—')}<br>نام مشتری: ${esc(o.customer_name)}<br>تلفن: ${esc(o.customer_phone)}<br>نشانی: ${esc(o.customer_address)}<br>مبلغ: <b>${fmt(o.total_amount)} تومان</b><br>روش پرداخت: کارت‌به‌کارت | وضعیت پرداخت: ${esc(o.payment_status)}<br>اقلام: ${items}<div class="field"><label>وضعیت سفارش</label><select id="orderStatus_${esc(o.id)}"><option value="new" ${o.order_status==='new'?'selected':''}>جدید</option><option value="processing" ${o.order_status==='processing'?'selected':''}>در حال آماده‌سازی</option><option value="shipped" ${o.order_status==='shipped'?'selected':''}>ارسال شده</option><option value="completed" ${o.order_status==='completed'?'selected':''}>تکمیل شده</option><option value="cancelled" ${o.order_status==='cancelled'?'selected':''}>لغو شده</option></select></div><button class="primary" onclick="updateOrderStatus('${esc(o.id)}')">ذخیره وضعیت سفارش</button></div>`}).join(''):'هنوز سفارشی در پایگاه داده آنلاین وجود ندارد.'}</div>
+  <hr style="margin:20px 0;border:0;border-top:1px solid #ddd"><h3>مدیریت محصولات آنلاین (${fmt(adminProducts.length)})</h3><div class="hint">محصولات این بخش در پایگاه داده ذخیره می‌شوند و پس از تازه‌سازی برای همه بازدیدکنندگان نمایش داده خواهند شد. حذف محصول روی سفارش‌های قبلی اثری ندارد.</div>
   <h3>افزودن محصول جدید</h3><div class="field"><label>نام محصول</label><input id="newName" placeholder="مثلاً کیف دستی"></div>
-  <div class="row2"><div class="field"><label>قیمت (تومان)</label><input id="newPrice" type="number" min="0" placeholder="500000"></div><div class="field"><label>ایموجی محصول</label><input id="newEmoji" placeholder="👜"></div></div>
+  <div class="row2"><div class="field"><label>قیمت (تومان)</label><input id="newPrice" type="number" min="1" placeholder="500000"></div><div class="field"><label>ایموجی محصول</label><input id="newEmoji" placeholder="👜"></div></div>
   <div class="row2"><div class="field"><label>دسته‌بندی</label><select id="newCat"><option>دیجیتال</option><option>خانه</option><option>پوشاک</option><option>زیبایی</option><option>ورزش</option><option>سایر</option></select></div><div class="field"><label>قیمت قبلی (اختیاری)</label><input id="newOld" type="number" min="0" placeholder="0"></div></div>
-  <div class="field"><label>توضیح کوتاه</label><input id="newDesc" placeholder="توضیح محصول"></div><button class="primary" onclick="addProduct()">افزودن محصول</button>
-  <h3 style="margin-top:20px">فهرست محصولات (${fmt(products.length)})</h3><div class="adminlist">${products.map(p=>`<div class="adminitem"><b>${esc(p.emoji)} ${esc(p.name)}</b> — ${fmt(p.price)} تومان<br><button onclick="deleteProduct(${p.id})">حذف محصول از همین مرورگر</button></div>`).join('')}</div>`;
- }catch(err){document.getElementById('adminBody').innerHTML=`<div class="hint">خطا در دریافت سفارش‌های آنلاین: ${esc(err.message||'خطای نامشخص')}<br>لطفاً تنظیمات RLS و سیاست‌های جدول orders را بررسی کن.</div><button class="secondary" onclick="renderAdmin()">تلاش دوباره</button><button class="secondary" onclick="adminLogout()">خروج</button>`}
+  <div class="field"><label>توضیح کوتاه</label><input id="newDesc" placeholder="توضیح محصول"></div><button class="primary" onclick="addProduct()">افزودن به فروشگاه آنلاین</button>
+  <div class="adminlist" style="margin-top:12px">${adminProducts.map(p=>`<div class="adminitem"><b>${esc(p.emoji||'📦')} ${esc(p.name)}</b><br>قیمت: ${fmt(p.price)} تومان ${p.active?'':'| غیرفعال'}<br><button class="smallbtn" onclick="editProduct(${Number(p.id)})">ویرایش نام و قیمت</button> <button style="background:#fee2e2;color:#991b1b;border-radius:6px;padding:7px 9px;margin-top:6px" onclick="deleteProduct(${Number(p.id)})">حذف آنلاین</button></div>`).join('')||'هنوز محصولی در جدول آنلاین نیست.'}</div>
+  <hr style="margin:20px 0;border:0;border-top:1px solid #ddd"><h3>پرداخت آنلاین بانکی</h3><div class="hint">برای پرداخت خودکار واقعی، باید حساب پذیرندگی در یک درگاه معتبر داشته باشی و یک بک‌اند امن برای ساخت تراکنش و تأیید پرداخت راه‌اندازی شود. اطلاعات محرمانه درگاه را هرگز داخل این فایل HTML یا گیت‌هاب قرار نده. تا آن زمان سفارش‌ها با وضعیت pending ثبت می‌شوند.</div>`;
+  if(adminProducts.length){products=adminProducts.filter(p=>p.active).map(mapProductRow);onlineProductsReady=true;renderProducts();}
+ }catch(err){document.getElementById('adminBody').innerHTML=`<div class="hint">خطا در دریافت اطلاعات آنلاین: ${esc(err.message||'خطای نامشخص')}<br>اگر جدول products هنوز ساخته نشده، ابتدا SQL آماده‌شده را در Supabase اجرا کن.</div><button class="secondary" onclick="renderAdmin()">تلاش دوباره</button><button class="secondary" onclick="adminLogout()">خروج</button>`}
 }
 async function updateOrderStatus(id){
  if(!adminAccessToken){toast('ابتدا وارد حساب مدیر شو');return}
@@ -209,16 +231,29 @@ async function updateOrderStatus(id){
  }catch(err){toast('خطا در ذخیره وضعیت سفارش');console.error(err)}
 }
 function adminLogout(){adminAccessToken=null;adminUserId=null;onlineOrders=[];openAdmin();toast('از حساب مدیر خارج شدی')}
-function addProduct(){
+async function addProduct(){
+ if(!adminAccessToken){toast('ابتدا وارد حساب مدیر شو');return}
  const name=document.getElementById('newName').value.trim(),price=Number(document.getElementById('newPrice').value);
- if(!name||!price||price<0){toast('نام و قیمت معتبر وارد کن');return}
- products.unshift({id:Date.now(),name,price,old:Number(document.getElementById('newOld').value)||0,emoji:document.getElementById('newEmoji').value.trim()||'📦',cat:document.getElementById('newCat').value,desc:document.getElementById('newDesc').value.trim()||'محصول جدید'});
- save();renderProducts();renderAdmin();toast('محصول اضافه شد');
+ if(!name||!Number.isFinite(price)||price<=0){toast('نام و قیمت معتبر وارد کن');return}
+ const payload={name,category:document.getElementById('newCat').value,emoji:document.getElementById('newEmoji').value.trim()||'📦',price,old_price:Number(document.getElementById('newOld').value)||0,description:document.getElementById('newDesc').value.trim()||'محصول جدید',active:true};
+ try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products`,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=representation'},body:JSON.stringify(payload)});if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||'افزودن محصول ناموفق بود')};toast('محصول به فروشگاه آنلاین اضافه شد');await renderAdmin();await loadOnlineProducts();}
+ catch(e){console.error(e);toast('افزودن آنلاین ناموفق بود؛ جدول و سیاست‌های products را بررسی کن')}
 }
-function deleteProduct(id){if(!confirm('این محصول حذف شود؟'))return;products=products.filter(p=>p.id!==id);delete cart[id];save();renderProducts();renderAdmin()}
+async function editProduct(id){
+ if(!adminAccessToken)return;const p=products.find(x=>Number(x.id)===Number(id));
+ // The product may not be in the currently visible list; query it from the admin list using the prompt values where possible.
+ const name=prompt('نام جدید محصول را وارد کن:');if(name===null)return;
+ const priceText=prompt('قیمت جدید به تومان را وارد کن:');if(priceText===null)return;
+ const price=Number(priceText);if(!name.trim()||!Number.isFinite(price)||price<=0){toast('نام یا قیمت معتبر نیست');return}
+ const oldText=prompt('قیمت قبلی (برای تخفیف؛ اگر ندارد 0):','0');if(oldText===null)return;
+ try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products?id=eq.${encodeURIComponent(id)}`,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=minimal'},body:JSON.stringify({name:name.trim(),price,old_price:Math.max(0,Number(oldText)||0)})});if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||'ویرایش ناموفق بود')}toast('محصول آنلاین ویرایش شد');await renderAdmin();await loadOnlineProducts();}
+ catch(e){console.error(e);toast('ویرایش آنلاین ناموفق بود')}
+}
+async function deleteProduct(id){if(!adminAccessToken){toast('ابتدا وارد حساب مدیر شو');return}if(!confirm('این محصول از فروشگاه آنلاین حذف شود؟'))return;try{const r=await fetch(`${SUPABASE_URL}/rest/v1/products?id=eq.${encodeURIComponent(id)}`,{method:'DELETE',headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${adminAccessToken}`,'Prefer':'return=minimal'}});if(!r.ok){let t='';try{t=await r.text()}catch(e){}throw new Error(t||'حذف ناموفق بود')}delete cart[id];save();toast('محصول از فروشگاه آنلاین حذف شد');await renderAdmin();await loadOnlineProducts();}catch(e){console.error(e);toast('حذف آنلاین ناموفق بود؛ دسترسی مدیر را بررسی کن')}}
 function deleteOrder(id){if(!confirm('این سفارش از همین مرورگر حذف شود؟'))return;let o=JSON.parse(localStorage.getItem('digishop_orders')||'[]').filter(x=>x.id!==id);localStorage.setItem('digishop_orders',JSON.stringify(o));renderAdmin()}
 function toast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#20242c;color:white;padding:12px 18px;border-radius:10px;z-index:30;font-size:13px;box-shadow:0 5px 20px #0002';document.body.appendChild(t)}t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2200)}
 renderProducts();
+loadOnlineProducts();
 </script>
 </body>
- </html>
+   </html>
