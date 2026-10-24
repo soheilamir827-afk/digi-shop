@@ -16,6 +16,14 @@
 @media(max-width:900px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1.5fr .6fr}.prod-art{height:125px}}
 @media(max-width:650px){.head-row{gap:9px;flex-wrap:wrap}.logo{font-size:23px}.search{order:3;flex-basis:100%}.cart-btn{margin-right:auto}.hero{padding:24px 20px;min-height:210px;grid-template-columns:1fr .55fr}.hero-art{font-size:72px}.chips{grid-template-columns:repeat(5,minmax(65px,1fr));gap:7px}.chip{padding:11px 3px;font-size:11px}.chip span{font-size:25px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product{padding:10px;border-radius:14px}.prod-art{height:110px;font-size:53px}.product h3{font-size:13px}.price{font-size:15px}.add{font-size:12px;padding:9px 5px}.benefits{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.modal{padding:16px}.cart-line{grid-template-columns:1fr auto}.cart-line .line-price{grid-column:1}.section-head h2{font-size:20px}}
 
+/* صفحه اختصاصی فروشگاه فروشنده */
+.store-link{display:block;width:100%;margin-top:8px;padding:8px;border-radius:9px;background:#f1eafe;color:#5b21b6;font-size:12px;font-weight:bold;text-align:center}
+.store-profile{background:linear-gradient(135deg,#281052,#6d28d9);color:white;border-radius:18px;padding:22px;margin-bottom:20px}
+.store-profile h2{margin:0 0 8px;font-size:25px}.store-profile p{margin:5px 0;color:#eee3ff}
+.store-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.store-actions button,.store-actions a{display:inline-block;border-radius:10px;padding:9px 13px;background:white;color:#5b21b6;font-weight:bold}
+.store-products-title{font-size:20px;margin:22px 0 12px}
+
 .seller-entry{background:#f1eafe;color:#5b21b6;border:1px solid #ddd6fe;border-radius:12px;padding:10px 12px;font-weight:bold;white-space:nowrap}
 .seller-line{font-size:11px;color:#64748b;margin:2px 0 6px}.contact-seller{display:block;text-align:center;background:#e7f8ee;color:#166534;border-radius:10px;padding:8px;margin-top:7px;font-size:12px;font-weight:bold}
 .vendor-status{padding:10px;border-radius:10px;background:#fef3c7;color:#92400e;margin:10px 0;font-size:13px}.vendor-status.approved{background:#dcfce7;color:#166534}.vendor-status.rejected{background:#fee2e2;color:#991b1b}
@@ -83,6 +91,14 @@
 <section id="sellerDashboard" class="hidden"><div id="sellerStatus"></div><div id="sellerApprovedTools" class="hidden"><h3>افزودن کالا</h3><form id="sellerProductForm"><div class="form-grid"><div class="field"><label>نام کالا *</label><input id="spName" required maxlength="150"></div><div class="field"><label>دسته‌بندی</label><select id="spCategory"><option>موبایل و دیجیتال</option><option>خانه و آشپزخانه</option><option>پوشاک و کفش</option><option>زیبایی و سلامت</option><option>ورزش و سفر</option><option>سایر کالاها</option></select></div><div class="field"><label>نماد کالا</label><input id="spEmoji" value="🛍️" maxlength="12"></div><div class="field"><label>قیمت (تومان) *</label><input id="spPrice" type="number" min="1" required></div><div class="field"><label>قیمت قبلی (اختیاری)</label><input id="spOldPrice" type="number" min="0"></div></div><div class="field"><label>توضیحات</label><textarea id="spDescription" rows="2" maxlength="500"></textarea></div><button class="primary" type="submit" id="spSave">انتشار کالا</button></form><h3>کالاهای فروشگاه من</h3><button class="secondary" id="sellerRefresh">به‌روزرسانی فهرست</button><div id="sellerProducts"><div class="loading">در حال بارگذاری…</div></div><h3>سفارش‌های فروشگاه من</h3><p class="muted">سفارش‌هایی که شامل کالاهای شما باشند در این قسمت نمایش داده می‌شوند.</p><div id="sellerOrders"><div class="loading">در حال بارگذاری…</div></div></div><button class="danger" id="sellerLogout" type="button">خروج از حساب فروشنده</button></section>
 </div></div>
 
+
+<div class="overlay" id="storeOverlay"><div class="modal">
+ <div class="modal-head"><h2>🏪 فروشگاه</h2><button class="close" id="closeStore" type="button">×</button></div>
+ <div class="store-profile"><h2 id="storeName">فروشگاه دیجی‌شاپ</h2><p id="storeDescription">محصولات این فروشگاه</p><div class="store-actions"><a id="storeWhatsapp" href="#" target="_blank" rel="noopener" class="hidden">💬 ارتباط در واتساپ</a><button type="button" id="shareStore">🔗 اشتراک‌گذاری فروشگاه</button></div></div>
+ <h3 class="store-products-title">محصولات این فروشگاه</h3><div id="storeProducts" class="product-grid"><div class="loading">در حال بارگذاری محصولات…</div></div>
+ <p class="muted">پرداخت آنلاین در دیجی‌شاپ انجام نمی‌شود؛ برای خرید با فروشنده هماهنگ کنید.</p>
+</div></div>
+
 <div class="toast" id="toast"></div>
 <script>
 'use strict';
@@ -145,8 +161,9 @@ function renderProducts(){
  const filtered=products.filter(p=>p.active!==false&&(selectedCategory==='همه'||p.category===selectedCategory)&&((p.name+' '+p.description+' '+p.category).toLowerCase().includes(searchTerm.toLowerCase())));
  $('productCount').textContent=fmt(filtered.length)+' کالا';
  if(!filtered.length){$('productGrid').innerHTML='<div class="empty">محصولی مطابق جست‌وجوی شما پیدا نشد.</div>';return}
- $('productGrid').innerHTML=filtered.map(p=>{const v=p.vendor_id?vendorProfiles.find(x=>x.user_id===p.vendor_id):null;const wa=v&&v.whatsapp?`<a class="contact-seller" target="_blank" rel="noopener" href="https://wa.me/${esc(normalizeWhatsApp(v.whatsapp))}">💬 ارتباط با ${esc(v.store_name||'فروشنده')}</a>`:'';return `<article class="product"><span class="badge">${v?'فروشنده همکار':'پیشنهاد ویژه'}</span><div class="prod-art">${esc(p.emoji)}</div><h3>${esc(p.name)}</h3>${v?`<div class="seller-line">🏪 ${esc(v.store_name)}</div>`:''}<p class="desc">${esc(p.description)}</p><div class="prices">${p.old_price&&p.old_price>p.price?`<div class="old">${money(p.old_price)}</div>`:''}<div class="price">${money(p.price)}</div></div><button class="add" data-add="${p.id}">افزودن به سبد خرید</button>${wa}</article>`}).join('');
+ $('productGrid').innerHTML=filtered.map(p=>{const v=p.vendor_id?vendorProfiles.find(x=>x.user_id===p.vendor_id):null;const wa=v&&v.whatsapp?`<a class="contact-seller" target="_blank" rel="noopener" href="https://wa.me/${esc(normalizeWhatsApp(v.whatsapp))}">💬 ارتباط با ${esc(v.store_name||'فروشنده')}</a>`:'';return `<article class="product"><span class="badge">${v?'فروشنده همکار':'پیشنهاد ویژه'}</span><div class="prod-art">${esc(p.emoji)}</div><h3>${esc(p.name)}</h3>${v?`<button type="button" class="store-link" data-open-store="${esc(v.user_id)}">🏪 مشاهده فروشگاه ${esc(v.store_name)}</button>`:''}<p class="desc">${esc(p.description)}</p><div class="prices">${p.old_price&&p.old_price>p.price?`<div class="old">${money(p.old_price)}</div>`:''}<div class="price">${money(p.price)}</div></div><button class="add" data-add="${p.id}">افزودن به سبد خرید</button>${wa}</article>`}).join('');
  document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',()=>addToCart(Number(b.dataset.add))));
+ document.querySelectorAll('[data-open-store]').forEach(b=>b.addEventListener('click',()=>openVendorStore(b.dataset.openStore)));
 }
 function addToCart(id){const p=products.find(x=>x.id===id);if(!p){toast('این محصول در دسترس نیست.');return}const row=cart.find(x=>x.id===id);if(row)row.qty++;else cart.push({id:p.id,name:p.name,emoji:p.emoji,price:p.price,qty:1});renderCart();toast('به سبد خرید اضافه شد.')}
 function cartSum(){return cart.reduce((s,x)=>s+x.price*x.qty,0)}
@@ -305,12 +322,46 @@ async function sellerDeleteProduct(id){if(!confirm('این کالا حذف شو�
 async function sellerLoadOrders(){try{const rows=await api('/vendor_orders?select=*&vendor_id=eq.'+encodeURIComponent(sellerUser.id)+'&order=created_at.desc',{token:sellerSession});$('sellerOrders').innerHTML=rows.length?rows.map(o=>`<div class="vendor-product"><div class="info"><strong>سفارش #${fmt(o.id)}</strong><div>${esc(o.customer_name)} · ${esc(o.customer_phone)}</div><div class="muted">${money(o.total_amount)} · ${esc(o.payment_method||'هماهنگی')}</div><div class="muted">${esc(o.customer_address||'')}</div><div class="muted">کالاها: ${esc((o.items||[]).map(i=>(i.name||'کالا')+' × '+(i.quantity||1)).join('، '))}</div></div><select data-vorder="${o.id}"><option value="new" ${o.order_status==='new'?'selected':''}>جدید</option><option value="processing" ${o.order_status==='processing'?'selected':''}>در حال آماده‌سازی</option><option value="shipped" ${o.order_status==='shipped'?'selected':''}>ارسال‌شده</option><option value="delivered" ${o.order_status==='delivered'?'selected':''}>تحویل‌شده</option><option value="cancelled" ${o.order_status==='cancelled'?'selected':''}>لغوشده</option></select><button class="secondary" data-save-vorder="${o.id}">ذخیره</button></div>`).join(''):'<div class="empty">هنوز سفارشی برای کالاهای این فروشگاه ثبت نشده.</div>';document.querySelectorAll('[data-save-vorder]').forEach(b=>b.onclick=async()=>{const id=b.dataset.saveVorder;const status=document.querySelector(`[data-vorder="${id}"]`).value;try{await api('/vendor_orders?id=eq.'+encodeURIComponent(id),{method:'PATCH',body:{order_status:status},token:sellerSession,prefer:'return=minimal'});sellerMsg('وضعیت سفارش به‌روزرسانی شد.')}catch(e){sellerMsg('به‌روزرسانی سفارش ناموفق بود: '+e.message,'error')}})}catch(err){$('sellerOrders').innerHTML='<div class="error">دریافت سفارش‌ها ناموفق بود: '+esc(err.message)+'</div>'}}
 $('sellerRefresh').onclick=async()=>{await sellerLoadProducts();await sellerLoadOrders()};
 $('sellerLogout').onclick=async()=>{try{if(sellerSession)await fetch(SUPABASE_URL+'/auth/v1/logout',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+sellerSession}})}catch{}sellerSession=null;sellerUser=null;sellerProfile=null;sellerShowSection('sellerAuthSection');sellerMsg('از حساب فروشنده خارج شدی.');};
+
+// صفحه اختصاصی فروشنده و لینک قابل اشتراک‌گذاری
+let currentStoreId=null;
+async function openVendorStore(userId,updateUrl=true){
+ try{
+  if(!products.length) await loadProducts();
+  let vendor=vendorProfiles.find(v=>String(v.user_id)===String(userId));
+  if(!vendor){await loadVendorProfiles();vendor=vendorProfiles.find(v=>String(v.user_id)===String(userId));}
+  if(!vendor){toast('فروشگاه پیدا نشد یا هنوز توسط مدیریت تأیید نشده است.');return;}
+  currentStoreId=String(userId);
+  $('storeName').textContent=vendor.store_name||'فروشگاه دیجی‌شاپ';
+  $('storeDescription').textContent='برای خرید کالاها، محصولات را بررسی کنید و از طریق واتساپ با فروشنده هماهنگ شوید.';
+  const wa=$('storeWhatsapp');
+  if(vendor.whatsapp){wa.href='https://wa.me/'+normalizeWhatsApp(vendor.whatsapp);wa.classList.remove('hidden');}
+  else{wa.href='#';wa.classList.add('hidden');}
+  const rows=products.filter(p=>String(p.vendor_id||'')===String(userId)&&p.active!==false);
+  $('storeProducts').innerHTML=rows.length?rows.map(p=>`<article class="product"><div class="prod-art">${esc(p.emoji||'🛍️')}</div><h3>${esc(p.name)}</h3><p class="desc">${esc(p.description||'')}</p><div class="prices">${p.old_price&&p.old_price>p.price?`<div class="old">${money(p.old_price)}</div>`:''}<div class="price">${money(p.price)}</div></div><button class="add" type="button" data-store-add="${p.id}">افزودن به سبد خرید</button></article>`).join(''):'<div class="empty">این فروشگاه هنوز محصول فعالی ندارد.</div>';
+  $('storeProducts').querySelectorAll('[data-store-add]').forEach(b=>b.addEventListener('click',()=>addToCart(Number(b.dataset.storeAdd))));
+  if(updateUrl){const url=new URL(location.href);url.searchParams.set('store',String(userId));history.pushState({store:String(userId)},'',url);}
+  showOverlay('storeOverlay');
+ }catch(err){console.error(err);toast('باز کردن فروشگاه انجام نشد. اتصال اینترنت را بررسی کن.');}
+}
+$('closeStore').onclick=()=>{hideOverlay('storeOverlay');currentStoreId=null;const url=new URL(location.href);url.searchParams.delete('store');history.pushState({},'',url);};
+$('shareStore').onclick=async()=>{
+ if(!currentStoreId)return;
+ const url=new URL(location.href);url.searchParams.set('store',currentStoreId);
+ try{if(navigator.share){await navigator.share({title:$('storeName').textContent,text:'مشاهده فروشگاه در دیجی‌شاپ',url:url.href});}
+ else if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(url.href);toast('لینک فروشگاه کپی شد.');}
+ else{prompt('این لینک فروشگاه را کپی کن:',url.href);}}
+ catch(err){if(err.name!=='AbortError')prompt('این لینک فروشگاه را کپی کن:',url.href);}
+};
+async function openStoreFromUrl(){const id=new URLSearchParams(location.search).get('store');if(id)await openVendorStore(id,false);}
+window.addEventListener('popstate',()=>{const id=new URLSearchParams(location.search).get('store');if(id)openVendorStore(id,false);else{hideOverlay('storeOverlay');currentStoreId=null;}});
+
 // Installable web app (PWA)
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPromptEvent=e;$('installBanner').classList.add('show')});
 $('installApp').onclick=async()=>{if(!installPromptEvent){toast('از منوی مرورگر گزینه «افزودن به صفحه اصلی» را بزن.');return}installPromptEvent.prompt();await installPromptEvent.userChoice;installPromptEvent=null;$('installBanner').classList.remove('show')};
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(e=>console.warn('PWA worker',e)))}
 
-renderCart();loadProducts();
+renderCart();loadProducts().then(openStoreFromUrl);
 </script>
 </body>
   </html>
